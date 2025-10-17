@@ -5,4 +5,15 @@ module.exports = {
       'Cross-Origin-Embedder-Policy': 'require-corp',
     },
   },
+  webpack: {
+    configure: (webpackConfig) => {
+      webpackConfig.resolve.fallback = {
+        ...webpackConfig.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+      };
+      return webpackConfig;
+    },
+  },
 };
