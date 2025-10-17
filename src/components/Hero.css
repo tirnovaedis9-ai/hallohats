@@ -1,0 +1,101 @@
+.hero-section {
+    height: 100vh;
+    position: relative;
+    background: url('../assets/images/heroBG.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff; /* White text to contrast with the dark overlay */
+    padding-top: 80px; /* Space for fixed header */
+}
+
+.hero-slogan,
+.hero-content .lead {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    white-space: pre-line;
+}
+
+.hero-btn {
+    font-weight: bold;
+    padding: 12px 35px;
+    border-radius: 50px;
+    background-color: var(--primary-red);
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(229, 57, 53, 0.7);
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(229, 57, 53, 1);
+    background-color: var(--secondary-red);
+}
+
+.pfp-editor-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 190px; /* Adjust size as needed */
+    height: auto; /* Adjust size as needed */
+    cursor: pointer;
+    z-index: 3; /* Ensure it's above other elements */
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pfp-editor-icon:hover {
+    transform: scale(1.1);
+}
+
+.shop-icon {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 160px;
+    height: auto;
+    cursor: pointer;
+    z-index: 3;
+    border-radius: 30%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.shop-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-slogan {
+        font-size: 2.5rem; /* Smaller font for mobile */
+    }
+
+    .hero-content .lead {
+        font-size: 1.1rem; /* Smaller font for mobile */
+    }
+
+    .pfp-editor-icon {
+        width: 120px; /* Smaller icon for mobile */
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .shop-icon {
+        width: 100px; /* Smaller icon for mobile */
+        bottom: 25px;
+        left: 25px;
+    }
+}

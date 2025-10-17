@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "La Visione",
+    "tokenomics": "Tokenomics",
+    "features": "Caratteristiche",
+    "roadmap": "Tabella di marcia",
+    "socials": "Comunità"
+  },
+  "hero": {
+    "slogan": "Oltre l'hype\nUna vera forza comunitaria",
+    "subtitle": "Scopri il potere di un token guidato dalla comunità sulla blockchain di Solana.",
+    "buy_button": "Compra ora"
+  },
+  "about": {
+    "title": "Questo è CoinMarketCapped",
+    "text": "Non siamo solo un'altra moneta; siamo un movimento. Nato sulla blockchain Solana ad alta velocità e a basso costo, CMC è un tributo al potere della comunità e al linguaggio universale dell'umorismo. La nostra missione è creare un ecosistema decentralizzato in cui ogni membro abbia voce in capitolo e una partecipazione al nostro successo collettivo. Stiamo sfruttando il potere dei meme non solo per ridere, ma per costruire una comunità resiliente e vibrante pronta per una crescita a lungo termine."
+  },
+  "features": {
+    "title": "Principi fondamentali",
+    "feature1_title": "Governato dalla comunità",
+    "feature1_text": "CMC è di proprietà della sua comunità. Le decisioni chiave e gli sviluppi futuri sono guidati dal consenso della comunità.",
+    "feature2_title": "Lancio trasparente",
+    "feature2_text": "CMC è stato lanciato con la trasparenza al centro. La maggior parte dell'offerta è dedicata alla comunità.",
+    "feature3_title": "Costruito su Solana",
+    "feature3_text": "Sfruttando la rete ultraveloce di Solana per transazioni quasi istantanee e commissioni incredibilmente basse."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "La nostra distribuzione di token è progettata per la fiducia della comunità e la crescita a lungo termine.",
+    "team": "Squadra",
+    "public_sale": "Vendita pubblica"
+  },
+  "roadmap": {
+    "title": "La nostra roadmap strategica",
+    "phase1": "Fase 1: Accensione e fondazione - Lancio equo riuscito, crescita iniziale della comunità su X e quotazione sui principali DEX di Solana.",
+    "phase2": "Fase 2: Espansione e visibilità - Campagne di marketing aggressive degli influencer, quotazioni su CoinGecko e CoinMarketCap e concorsi comunitari.",
+    "phase3": "Fase 3: Utilità ed ecosistema - Sviluppo di utilità uniche per i detentori, partnership con altri progetti Solana e garanzia di quotazioni sui principali CEX."
+  },
+  "socials": {
+    "title": "Tu sei la rete"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. Per la comunità, dalla comunità."
+  },
+  "meme_generator": {
+    "title": "Generatore di meme CMC",
+    "upload_placeholder": "Clicca per caricare la foto",
+    "detecting_face": "Rilevamento del volto...",
+    "close_button": "Chiudi",
+    "download_button": "Scarica meme",
+    "scale": "Scala:",
+    "rotate": "Ruota:",
+    "rotate_x": "Ruota X:",
+    "rotate_y": "Ruota Y:",
+    "reset_all": "Ripristina tutto"
+  },
+  "shop": {
+    "title": "Negozio di merchandising CMC",
+    "product_name": "Cappellino CMC \"Rendi di nuovo divertente la Meme Coin\"",
+    "product_description": "Il cappellino ufficiale della comunità CoinMarketCapped. Ricamo di alta qualità, taglia unica. Mostra il tuo supporto!",
+    "shipping_unavailable": "La spedizione nel tuo paese non è currently disponibile.",
+    "add_to_cart": "Aggiungi al carrello",
+    "reviews_title": "Cosa dicono le persone",
+    "review1_text": "Questo cappello è leggendario! La qualità è sorprendente e ricevo complimenti ovunque vada. Un must-have per ogni vero detentore di CMC.",
+    "review2_text": "WAGMI! Finalmente, del merchandising che capisce. Ne ho comprato uno per me e mio fratello. Verso la luna!",
+    "review3_text": "Indosso questo cappellino a tutti i meetup di criptovalute. È un ottimo spunto di conversazione. #CMC",
+    "review4_text": "Qualità solida, sembra resistente. Sembra esattamente come nella foto.",
+    "review5_text": "Questa è l'uniforme per l'esercito CMC. Felice di far parte di questa comunità.",
+    "review6_text": "Ho ricevuto il mio cappellino la settimana scorsa e non l'ho più tolto. Super comodo.",
+    "review7_text": "Le cuciture sono di prim'ordine. Si capisce che non è stato fatto a buon mercato.",
+    "review8_text": "Andiamo! La migliore meme coin, la migliore comunità, il miglior cappellino.",
+    "review9_text": "Se stai pensando di prenderne uno, fallo e basta. Non te ne pentirai.",
+    "review10_text": "Orgoglioso di rappresentare CMC con questa fantastica attrezzatura.",
+    "review11_text": "La scatola di spedizione è arrivata aperta, ma la qualità del prodotto è abbastanza buona.",
+    "close_button": "Chiudi",
+    "quantity": "Quantità",
+    "buy_now": "Compra ora"
+  }
+}

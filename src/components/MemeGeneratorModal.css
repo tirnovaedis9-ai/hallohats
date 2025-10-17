@@ -1,0 +1,157 @@
+.canvas-container {
+    position: relative;
+    display: inline-block;
+    border: 2px dashed #888;
+    border-radius: 5px;
+    overflow: hidden; /* Ensures the button doesn't stick out if it has a weird shape */
+}
+
+/* This rule prevents the small gap that appears under the canvas due to its default inline display */
+.canvas-container canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.upload-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    transition: background-color 0.2s ease-in-out;
+    z-index: 10; /* Make sure it's on top of the canvas */
+}
+
+.upload-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/logo.png');
+    background-position: center 60%; /* Moved down slightly */
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: -1; /* Place behind content */
+}
+
+.dark-theme .upload-placeholder {
+    color: white;
+}
+
+.light-theme .upload-placeholder {
+    color: black;
+}
+.upload-placeholder:hover {
+    background-color: rgba(136, 136, 136, 0.1);
+}
+
+.upload-placeholder svg {
+    margin-bottom: 1rem;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 15; /* Above placeholder and other elements */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px; /* Slightly larger for better visibility */
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.remove-image-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.detection-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 20; /* Highest z-index */
+}
+
+.detection-spinner p {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .canvas-container canvas {
+        width: 100% !important; /* Force override of inline attributes */
+        height: auto !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .meme-generator-modal {
+        max-width: 1140px;
+    }
+}
+
+.meme-form {
+    margin: 0;
+}
+
+.meme-generator-modal .vr {
+  background-color: var(--bs-secondary); /* Use Bootstrap's secondary color for consistency */
+  opacity: 0.5;
+  width: 1px;
+  height: 24px; /* Adjust height as needed */
+}
+
+.dark-theme .meme-generator-modal .vr {
+  background-color: var(--bs-light); /* Lighter color for dark theme */
+}
+
+.meme-generator-modal .form-range {
+  width: 100%;
+}
+
+.dark-theme .meme-generator-modal .form-range::-webkit-slider-thumb {
+  background-color: var(--bs-light);
+}
+
+.dark-theme .meme-generator-modal .form-range::-moz-range-thumb {
+  background-color: var(--bs-light);
+}
+
+.dark-theme .meme-generator-modal .form-range::-ms-thumb {
+  background-color: var(--bs-light);
+}
+
+.controls-active .btn {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.controls-active .form-range {
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
+}

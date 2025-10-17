@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "La Visión",
+    "tokenomics": "Tokenomics",
+    "features": "Características",
+    "roadmap": "Hoja de ruta",
+    "socials": "Comunidad"
+  },
+  "hero": {
+    "slogan": "Más allá del bombo\nUna verdadera fuerza comunitaria",
+    "subtitle": "Descubre el poder de un token impulsado por la comunidad en la blockchain de Solana.",
+    "buy_button": "Comprar ahora"
+  },
+  "about": {
+    "title": "Esto es CoinMarketCapped",
+    "text": "No somos solo otra moneda; somos un movimiento. Nacido en la blockchain de Solana, de alta velocidad y bajo costo, CMC es un tributo al poder de la comunidad y al lenguaje universal del humor. Nuestra misión es crear un ecosistema descentralizado donde cada miembro tenga voz y participación en nuestro éxito colectivo. Estamos aprovechando el poder de los memes no solo para reír, sino para construir una comunidad resiliente y vibrante preparada para el crecimiento a largo plazo."
+  },
+  "features": {
+    "title": "Principios fundamentales",
+    "feature1_title": "Gobernado por la comunidad",
+    "feature1_text": "CMC es propiedad de su comunidad. Las decisiones clave y los desarrollos futuros son guiados por el consenso de la comunidad.",
+    "feature2_title": "Lanzamiento transparente",
+    "feature2_text": "CMC se lanzó con la transparencia en su núcleo. La mayoría del suministro está dedicado a la comunidad.",
+    "feature3_title": "Construido sobre Solana",
+    "feature3_text": "Aprovechando la red ultrarrápida de Solana para transacciones casi instantáneas y tarifas increíblemente bajas."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "Nuestra distribución de tokens está diseñada para la confianza de la comunidad y el crecimiento a largo plazo.",
+    "team": "Equipo",
+    "public_sale": "Venta pública"
+  },
+  "roadmap": {
+    "title": "Nuestra hoja de ruta estratégica",
+    "phase1": "Fase 1: Ignición y Fundación - Lanzamiento justo exitoso, crecimiento inicial de la comunidad en X, y listado en los principales DEX de Solana.",
+    "phase2": "Fase 2: Expansión y Visibilidad - Campañas agresivas de marketing de influencers, listados en CoinGecko y CoinMarketCap, y concursos comunitarios.",
+    "phase3": "Fase 3: Utilidad y Ecosistema - Desarrollo de utilidades únicas para los titulares, asociaciones con otros proyectos de Solana y aseguramiento de listados en los principales CEX."
+  },
+  "socials": {
+    "title": "Tú eres la red"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. Para la comunidad, por la comunidad."
+  },
+  "meme_generator": {
+    "title": "Generador de memes CMC",
+    "upload_placeholder": "Haz clic para subir una foto",
+    "detecting_face": "Detectando cara...",
+    "close_button": "Cerrar",
+    "download_button": "Descargar meme",
+    "scale": "Escala:",
+    "rotate": "Girar:",
+    "rotate_x": "Girar X:",
+    "rotate_y": "Girar Y:",
+    "reset_all": "Reiniciar todo"
+  },
+  "shop": {
+    "title": "Tienda de merchandising de CMC",
+    "product_name": "Gorra CMC \"Haz que Meme Coin sea divertido de nuevo\"",
+    "product_description": "La gorra oficial de la comunidad CoinMarketCapped. Bordado de alta calidad, talla única. ¡Muestra tu apoyo!",
+    "shipping_unavailable": "El envío a tu país no está disponible actualmente.",
+    "add_to_cart": "Añadir al carrito",
+    "reviews_title": "Lo que dice la gente",
+    "review1_text": "¡Esta gorra es legendaria! La calidad es increíble y recibo cumplidos donde quiera que vaya. Imprescindible para cualquier verdadero poseedor de CMC.",
+    "review2_text": "¡WAGMI! Finalmente, algo de merchandising que lo entiende. Compré uno para mí y mi hermano. ¡A la luna!",
+    "review3_text": "Llevo esta gorra a todas las reuniones de criptomonedas. Es un gran iniciador de conversación. #CMC",
+    "review4_text": "Calidad sólida, se siente duradera. Se ve exactamente como en la imagen.",
+    "review5_text": "Este es el uniforme para el ejército de CMC. Me alegra ser parte de esta comunidad.",
+    "review6_text": "Recibí mi gorra la semana pasada y no me la he quitado. Súper cómoda.",
+    "review7_text": "La costura es de primera. Se nota que no fue hecha a bajo costo.",
+    "review8_text": "¡Vamos! La mejor meme coin, la mejor comunidad, la mejor gorra.",
+    "review9_text": "Si estás pensando en comprar una, solo hazlo. No te arrepentirás.",
+    "review10_text": "Orgulloso de representar a CMC con este increíble equipo.",
+    "review11_text": "La caja de envío llegó abierta, pero la calidad del producto es bastante buena.",
+    "close_button": "Cerrar",
+    "quantity": "Cantidad",
+    "buy_now": "Comprar ahora"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "The Vision",
+    "tokenomics": "Tokenomics",
+    "features": "Features",
+    "roadmap": "Roadmap",
+    "socials": "Community"
+  },
+  "hero": {
+    "slogan": "Beyond the Hype\nA True Community Force",
+    "subtitle": "Discover the power of a community-driven token on the Solana blockchain.",
+    "buy_button": "Buy Now"
+  },
+  "about": {
+    "title": "This is CoinMarketCapped",
+    "text": "We're not just another coin; we are a movement. Born on the high-speed, low-cost Solana blockchain, CMC is a tribute to the power of community and the universal language of humor. Our mission is to create a decentralized ecosystem where every member has a voice and a stake in our collective success. We're leveraging the power of memes not just for laughs, but to build a resilient and vibrant community poised for long-term growth."
+  },
+  "features": {
+    "title": "Core Principles",
+    "feature1_title": "Community Governed",
+    "feature1_text": "CMC is owned by its community. Key decisions and future developments are guided by community consensus.",
+    "feature2_title": "Transparent Launch",
+    "feature2_text": "CMC was launched with transparency at its core. The majority of the supply is dedicated to the community.",
+    "feature3_title": "Built on Solana",
+    "feature3_text": "Leveraging Solana's lightning-fast network for near-instant transactions and incredibly low fees."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "Our token distribution is designed for community trust and long-term growth.",
+    "team": "Team",
+    "public_sale": "Public Sale"
+  },
+  "roadmap": {
+    "title": "Our Strategic Roadmap",
+    "phase1": "Phase 1: Ignition & Foundation - Successful fair launch, initial community growth on X, and listing on major Solana DEXs.",
+    "phase2": "Phase 2: Expansion & Visibility - Aggressive influencer marketing campaigns, listings on CoinGecko and CoinMarketCap, and community contests.",
+    "phase3": "Phase 3: Utility & Ecosystem - Development of unique holder utilities, partnerships with other Solana projects, and securing listings on major CEXs."
+  },
+  "socials": {
+    "title": "You Are The Network"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. For the community, by the community."
+  },
+  "meme_generator": {
+    "title": "CMC Meme Generator",
+    "upload_placeholder": "Click to Upload Photo",
+    "detecting_face": "Processing image...",
+    "close_button": "Close",
+    "download_button": "Download Meme",
+    "scale": "Scale:",
+    "rotate": "Rotate:",
+    "rotate_x": "Rotate X:",
+    "rotate_y": "Rotate Y:",
+    "reset_all": "Reset All"
+  },
+  "shop": {
+    "title": "CMC Merch Shop",
+    "product_name": "CMC \"Make Meme Coin Fun Again\" Cap",
+    "product_description": "The official cap of the CoinMarketCapped community. High-quality embroidery, one size fits all. Show your support!",
+    "shipping_unavailable": "Shipping to your country is currently unavailable.",
+    "add_to_cart": "Add to Cart",
+    "reviews_title": "What People Are Saying",
+    "review1_text": "This hat is legendary! The quality is amazing and I get compliments everywhere I go. A must-have for any real CMC holder.",
+    "review2_text": "WAGMI! Finally, some merch that gets it. Bought one for myself and my brother. To the moon!",
+    "review3_text": "I wear this cap to all the crypto meetups. It's a great conversation starter. #CMC",
+    "review4_text": "Solid quality, feels durable. Looks exactly like the picture.",
+    "review5_text": "This is the uniform for the CMC army. Glad to be a part of this community.",
+    "review6_text": "Got my cap last week and I haven't taken it off. Super comfortable.",
+    "review7_text": "The stitching is top-notch. You can tell this wasn't cheaply made.",
+    "review8_text": "Let's go! Best meme coin, best community, best cap.",
+    "review9_text": "If you're thinking about getting one, just do it. You won't regret it.",
+    "review10_text": "Proud to represent CMC with this awesome gear.",
+    "review11_text": "The shipping box arrived open, but the product's quality is quite good.",
+    "close_button": "Close",
+    "quantity": "Quantity",
+    "buy_now": "Buy Now"
+  }
+}

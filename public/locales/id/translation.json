@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "Visi",
+    "tokenomics": "Tokenomics",
+    "features": "Fitur",
+    "roadmap": "Peta Jalan",
+    "socials": "Komunitas"
+  },
+  "hero": {
+    "slogan": "Melampaui Hype\nKekuatan Komunitas Sejati",
+    "subtitle": "Temukan kekuatan token yang digerakkan komunitas di blockchain Solana.",
+    "buy_button": "Beli Sekarang"
+  },
+  "about": {
+    "title": "Ini adalah CoinMarketCapped",
+    "text": "Kami bukan hanya koin lain; kami adalah sebuah gerakan. Lahir di blockchain Solana berkecepatan tinggi dan berbiaya rendah, CMC adalah penghargaan untuk kekuatan komunitas dan bahasa humor universal. Misi kami adalah menciptakan ekosistem terdesentralisasi di mana setiap anggota memiliki suara dan saham dalam kesuksesan kolektif kami. Kami memanfaatkan kekuatan meme tidak hanya untuk tertawa, tetapi untuk membangun komunitas yang tangguh dan bersemangat yang siap untuk pertumbuhan jangka panjang."
+  },
+  "features": {
+    "title": "Prinsip Inti",
+    "feature1_title": "Dikelola Komunitas",
+    "feature1_text": "CMC dimiliki oleh komunitasnya. Keputusan kunci dan pengembangan masa depan dipandu oleh konsensus komunitas.",
+    "feature2_title": "Peluncuran Transparan",
+    "feature2_text": "CMC diluncurkan dengan transparansi sebagai intinya. Sebagian besar pasokan didedikasikan untuk komunitas.",
+    "feature3_title": "Dibangun di atas Solana",
+    "feature3_text": "Memanfaatkan jaringan Solana yang sangat cepat untuk transaksi yang hampir instan dan biaya yang sangat rendah."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "Distribusi token kami dirancang untuk kepercayaan komunitas dan pertumbuhan jangka panjang.",
+    "team": "Tim",
+    "public_sale": "Penjualan Publik"
+  },
+  "roadmap": {
+    "title": "Peta Jalan Strategis Kami",
+    "phase1": "Fase 1: Pengapian & Fondasi - Peluncuran yang adil berhasil, pertumbuhan komunitas awal di X, dan daftar di DEX Solana utama.",
+    "phase2": "Fase 2: Ekspansi & Visibilitas - Kampanye pemasaran influencer yang agresif, daftar di CoinGecko dan CoinMarketCap, dan kontes komunitas.",
+    "phase3": "Fase 3: Utilitas & Ekosistem - Pengembangan utilitas pemegang yang unik, kemitraan dengan proyek Solana lainnya, dan mengamankan daftar di CEX utama."
+  },
+  "socials": {
+    "title": "Anda adalah Jaringan"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. Untuk komunitas, oleh komunitas."
+  },
+  "meme_generator": {
+    "title": "Generator Meme CMC",
+    "upload_placeholder": "Klik untuk Unggah Foto",
+    "detecting_face": "Mendeteksi wajah...",
+    "close_button": "Tutup",
+    "download_button": "Unduh Meme",
+    "scale": "Skala:",
+    "rotate": "Putar:",
+    "rotate_x": "Putar X:",
+    "rotate_y": "Putar Y:",
+    "reset_all": "Atur Ulang Semua"
+  },
+  "shop": {
+    "title": "Toko Merch CMC",
+    "product_name": "Topi CMC \"Jadikan Meme Coin Menyenangkan Lagi\"",
+    "product_description": "Topi resmi komunitas CoinMarketCapped. Bordir berkualitas tinggi, satu ukuran cocok untuk semua. Tunjukkan dukungan Anda!",
+    "shipping_unavailable": "Pengiriman ke negara Anda saat ini tidak tersedia.",
+    "add_to_cart": "Tambahkan ke Keranjang",
+    "reviews_title": "Apa Kata Orang",
+    "review1_text": "Topi ini legendaris! Kualitasnya luar biasa dan saya mendapat pujian ke mana pun saya pergi. Wajib dimiliki oleh setiap pemegang CMC sejati.",
+    "review2_text": "WAGMI! Akhirnya, beberapa merch yang mengerti. Saya membeli satu untuk diri saya sendiri dan saudara saya. Ke bulan!",
+    "review3_text": "Saya memakai topi ini ke semua pertemuan kripto. Ini adalah pembuka percakapan yang bagus. #CMC",
+    "review4_text": "Kualitas solid, terasa tahan lama. Terlihat persis seperti di gambar.",
+    "review5_text": "Ini adalah seragam untuk tentara CMC. Senang menjadi bagian dari komunitas ini.",
+    "review6_text": "Saya mendapatkan topi saya minggu lalu dan belum melepasnya. Sangat nyaman.",
+    "review7_text": "Jahitannya terbaik. Anda bisa tahu ini tidak dibuat dengan murah.",
+    "review8_text": "Ayo! Koin meme terbaik, komunitas terbaik, topi terbaik.",
+    "review9_text": "Jika Anda berpikir untuk mendapatkannya, lakukan saja. Anda tidak akan menyesal.",
+    "review10_text": "Bangga mewakili CMC dengan perlengkapan yang luar biasa ini.",
+    "review11_text": "Kotak pengiriman tiba dalam keadaan terbuka, tetapi kualitas produknya cukup baik.",
+    "close_button": "Tutup",
+    "quantity": "Jumlah",
+    "buy_now": "Beli Sekarang"
+  }
+}

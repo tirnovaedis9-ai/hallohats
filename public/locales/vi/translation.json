@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "Tầm nhìn",
+    "tokenomics": "Tokenomics",
+    "features": "Tính năng",
+    "roadmap": "Lộ trình",
+    "socials": "Cộng đồng"
+  },
+  "hero": {
+    "slogan": "Vượt xa sự cường điệu\nMột lực lượng cộng đồng thực sự",
+    "subtitle": "Khám phá sức mạnh của một token do cộng đồng điều hành trên blockchain Solana.",
+    "buy_button": "Mua ngay"
+  },
+  "about": {
+    "title": "Đây là CoinMarketCapped",
+    "text": "Chúng tôi không chỉ là một đồng tiền khác; chúng tôi là một phong trào. Ra đời trên blockchain Solana tốc độ cao, chi phí thấp, CMC là một sự tôn vinh sức mạnh của cộng đồng và ngôn ngữ hài hước phổ quát. Nhiệm vụ của chúng tôi là tạo ra một hệ sinh thái phi tập trung nơi mọi thành viên đều có tiếng nói và cổ phần trong thành công chung của chúng tôi. Chúng tôi đang tận dụng sức mạnh của meme không chỉ để giải trí, mà còn để xây dựng một cộng đồng kiên cường và sôi động sẵn sàng cho sự phát triển lâu dài."
+  },
+  "features": {
+    "title": "Nguyên tắc cốt lõi",
+    "feature1_title": "Cộng đồng quản lý",
+    "feature1_text": "CMC thuộc sở hữu của cộng đồng. Các quyết định quan trọng và sự phát triển trong tương lai được hướng dẫn bởi sự đồng thuận của cộng đồng.",
+    "feature2_title": "Ra mắt minh bạch",
+    "feature2_text": "CMC được ra mắt với sự minh bạch là cốt lõi. Phần lớn nguồn cung được dành cho cộng đồng.",
+    "feature3_title": "Được xây dựng trên Solana",
+    "feature3_text": "Tận dụng mạng lưới cực nhanh của Solana cho các giao dịch gần như tức thì và phí cực thấp."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "Phân phối token của chúng tôi được thiết kế để tạo niềm tin cộng đồng và tăng trưởng dài hạn.",
+    "team": "Đội ngũ",
+    "public_sale": "Bán công khai"
+  },
+  "roadmap": {
+    "title": "Lộ trình chiến lược của chúng tôi",
+    "phase1": "Giai đoạn 1: Khởi động & Nền tảng - Ra mắt công bằng thành công, tăng trưởng cộng đồng ban đầu trên X, và niêm yết trên các DEX Solana lớn.",
+    "phase2": "Giai đoạn 2: Mở rộng & Khả năng hiển thị - Các chiến dịch tiếp thị người ảnh hưởng mạnh mẽ, niêm yết trên CoinGecko và CoinMarketCap, và các cuộc thi cộng đồng.",
+    "phase3": "Giai đoạn 3: Tiện ích & Hệ sinh thái - Phát triển các tiện ích độc đáo cho người nắm giữ, hợp tác với các dự án Solana khác và đảm bảo niêm yết trên các CEX lớn."
+  },
+  "socials": {
+    "title": "Bạn là mạng lưới"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. Vì cộng đồng, bởi cộng đồng."
+  },
+  "meme_generator": {
+    "title": "Trình tạo Meme CMC",
+    "upload_placeholder": "Nhấp để tải ảnh lên",
+    "detecting_face": "Đang phát hiện khuôn mặt...",
+    "close_button": "Đóng",
+    "download_button": "Tải Meme",
+    "scale": "Tỷ lệ:",
+    "rotate": "Xoay:",
+    "rotate_x": "Xoay X:",
+    "rotate_y": "Xoay Y:",
+    "reset_all": "Đặt lại tất cả"
+  },
+  "shop": {
+    "title": "Cửa hàng Merch CMC",
+    "product_name": "Mũ CMC \"Làm cho Meme Coin vui vẻ trở lại\"",
+    "product_description": "Mũ chính thức của cộng đồng CoinMarketCapped. Thêu chất lượng cao, một kích thước phù hợp với tất cả. Hãy thể hiện sự ủng hộ của bạn!",
+    "shipping_unavailable": "Hiện tại không thể vận chuyển đến quốc gia của bạn.",
+    "add_to_cart": "Thêm vào giỏ hàng",
+    "reviews_title": "Mọi người đang nói gì",
+    "review1_text": "Chiếc mũ này thật huyền thoại! Chất lượng tuyệt vời và tôi nhận được lời khen ở khắp mọi nơi. Một món đồ không thể thiếu đối với bất kỳ người nắm giữ CMC thực sự nào.",
+    "review2_text": "WAGMI! Cuối cùng, một số sản phẩm hiểu được điều đó. Tôi đã mua một cái cho mình và anh trai tôi. Lên mặt trăng!",
+    "review3_text": "Tôi đội chiếc mũ này đến tất cả các buổi gặp mặt về tiền điện tử. Nó là một người bắt đầu cuộc trò chuyện tuyệt vời. #CMC",
+    "review4_text": "Chất lượng chắc chắn, cảm thấy bền. Trông giống hệt như trong hình.",
+    "review5_text": "Đây là đồng phục của quân đội CMC. Rất vui được trở thành một phần của cộng đồng này.",
+    "review6_text": "Tôi đã nhận được chiếc mũ của mình vào tuần trước và vẫn chưa tháo nó ra. Siêu thoải mái.",
+    "review7_text": "Đường may là hàng đầu. Bạn có thể thấy rằng nó không được làm một cách rẻ tiền.",
+    "review8_text": "Đi nào! Đồng meme tốt nhất, cộng đồng tốt nhất, chiếc mũ tốt nhất.",
+    "review9_text": "Nếu bạn đang nghĩ đến việc mua một chiếc, hãy cứ làm đi. Bạn sẽ không hối tiếc.",
+    "review10_text": "Tự hào đại diện cho CMC với bộ đồ tuyệt vời này.",
+    "review11_text": "Hộp vận chuyển đến nơi đã bị mở, nhưng chất lượng sản phẩm khá tốt.",
+    "close_button": "Đóng",
+    "quantity": "Số lượng",
+    "buy_now": "Mua ngay"
+  }
+}

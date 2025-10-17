@@ -1,0 +1,79 @@
+{
+  "header": {
+    "about": "La Vision",
+    "tokenomics": "Tokenomics",
+    "features": "Fonctionnalités",
+    "roadmap": "Feuille de route",
+    "socials": "Communauté"
+  },
+  "hero": {
+    "slogan": "Au-delà du battage médiatique\nUne véritable force communautaire",
+    "subtitle": "Découvrez le pouvoir d'un jeton communautaire sur la blockchain Solana.",
+    "buy_button": "Acheter maintenant"
+  },
+  "about": {
+    "title": "Ceci est CoinMarketCapped",
+    "text": "Nous ne sommes pas juste une autre pièce; nous sommes un mouvement. Né sur la blockchain Solana rapide et peu coûteuse, CMC est un hommage au pouvoir de la communauté et au langage universel de l'humour. Notre mission est de créer un écosystème décentralisé où chaque membre a une voix et un intérêt dans notre succès collectif. Nous exploitons le pouvoir des mèmes non seulement pour rire, mais pour construire une communauté résiliente et dynamique, prête pour une croissance à long terme."
+  },
+  "features": {
+    "title": "Principes fondamentaux",
+    "feature1_title": "Gouverné par la communauté",
+    "feature1_text": "CMC est détenu par sa communauté. Les décisions clés et les développements futurs sont guidés par le consensus de la communauté.",
+    "feature2_title": "Lancement transparent",
+    "feature2_text": "CMC a été lancé avec la transparence au cœur. La majorité de l'approvisionnement est dédiée à la communauté.",
+    "feature3_title": "Construit sur Solana",
+    "feature3_text": "Tirer parti du réseau ultra-rapide de Solana pour des transactions quasi instantanées et des frais incroyablement bas."
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "text": "Notre distribution de jetons est conçue pour la confiance de la communauté et la croissance à long terme.",
+    "team": "Équipe",
+    "public_sale": "Vente publique"
+  },
+  "roadmap": {
+    "title": "Notre feuille de route stratégique",
+    "phase1": "Phase 1: Allumage et fondation - Lancement équitable réussi, croissance initiale de la communauté sur X, et cotation sur les principaux DEX Solana.",
+    "phase2": "Phase 2: Expansion et visibilité - Campagnes de marketing d'influence agressives, cotations sur CoinGecko et CoinMarketCap, et concours communautaires.",
+    "phase3": "Phase 3: Utilité et écosystème - Développement d'utilitaires uniques pour les détenteurs, partenariats avec d'autres projets Solana et obtention de cotations sur les principaux CEX."
+  },
+  "socials": {
+    "title": "Vous êtes le réseau"
+  },
+  "footer": {
+    "text": "CoinMarketCapped. Pour la communauté, par la communauté."
+  },
+  "meme_generator": {
+    "title": "Générateur de mèmes CMC",
+    "upload_placeholder": "Cliquez pour télécharger une photo",
+    "detecting_face": "Détection du visage...",
+    "close_button": "Fermer",
+    "download_button": "Télécharger le mème",
+    "scale": "Échelle:",
+    "rotate": "Rotation:",
+    "rotate_x": "Rotation X:",
+    "rotate_y": "Rotation Y:",
+    "reset_all": "Tout réinitialiser"
+  },
+  "shop": {
+    "title": "Boutique de produits dérivés CMC",
+    "product_name": "Casquette CMC \"Rendez le Meme Coin à nouveau amusant\"",
+    "product_description": "La casquette officielle de la communauté CoinMarketCapped. Broderie de haute qualité, taille unique. Montrez votre soutien!",
+    "shipping_unavailable": "L'expédition vers votre pays est actuellement indisponible.",
+    "add_to_cart": "Ajouter au panier",
+    "reviews_title": "Ce que les gens disent",
+    "review1_text": "Ce chapeau est légendaire! La qualité est incroyable et je reçois des compliments partout où je vais. Un incontournable pour tout vrai détenteur de CMC.",
+    "review2_text": "WAGMI! Enfin, des produits dérivés qui comprennent. J'en ai acheté un pour moi et mon frère. Vers la lune!",
+    "review3_text": "Je porte cette casquette à toutes les rencontres crypto. C'est un excellent sujet de conversation. #CMC",
+    "review4_text": "Qualité solide, semble durable. Ressemble exactement à la photo.",
+    "review5_text": "C'est l'uniforme de l'armée CMC. Heureux de faire partie de cette communauté.",
+    "review6_text": "J'ai eu ma casquette la semaine dernière et je ne l'ai pas enlevée. Super confortable.",
+    "review7_text": "Les coutures sont de première qualité. On voit que ce n'est pas fait à bon marché.",
+    "review8_text": "Allons-y ! Meilleur meme coin, meilleure communauté, meilleure casquette.",
+    "review9_text": "Si vous envisagez d'en acheter une, faites-le. Vous ne le regretterez pas.",
+    "review10_text": "Fier de représenter CMC avec cet équipement génial.",
+    "review11_text": "La boîte d'expédition est arrivée ouverte, mais la qualité du produit est assez bonne.",
+    "close_button": "Fermer",
+    "quantity": "Quantité",
+    "buy_now": "Acheter maintenant"
+  }
+}

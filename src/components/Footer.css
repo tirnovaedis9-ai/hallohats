@@ -1,0 +1,9 @@
+.footer {
+    border-top: 1px solid var(--border-color-light);
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.dark-theme .footer {
+    border-top: 1px solid var(--border-color-dark);
+}

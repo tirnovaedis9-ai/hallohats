@@ -1,0 +1,35 @@
+.scroll-to-top .scroll-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-red);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.2s;
+    opacity: 1;
+}
+
+.scroll-to-top .scroll-btn:hover {
+    background-color: var(--secondary-red);
+    transform: translateY(-3px);
+}
+
+/* Animation for fade in/out */
+.scroll-to-top button {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.scroll-to-top button.visible {
+    opacity: 1;
+}

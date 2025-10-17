@@ -1,0 +1,36 @@
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-icon {
+    font-size: 3rem; /* Larger icons */
+    color: var(--light-text);
+    transition: transform 0.3s, color 0.3s;
+}
+
+.dark-theme .social-icon {
+    color: var(--dark-text);
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.social-icon.twitter:hover {
+    color: #1DA1F2;
+}
+
+.social-icon.telegram:hover {
+    color: #26A5E4;
+}
+
+@media (max-width: 768px) {
+    .social-icons {
+        gap: 1.5rem; /* Smaller gap for mobile */
+    }
+    .social-icon {
+        font-size: 2.2rem; /* Smaller icons for mobile */
+    }
+}
