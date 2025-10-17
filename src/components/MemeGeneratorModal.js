@@ -801,7 +801,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
               )}
             </div>
             {/* New Controls for positioning and scaling */}
-            <div className={`d-flex justify-content-center align-items-center mt-3 mb-3 ${selectedOverlay ? 'controls-active' : ''}`}>
+            <div className={`meme-controls-container d-flex justify-content-center align-items-center mt-3 mb-3 ${selectedOverlay ? 'controls-active' : ''}`}>
               <div className="d-flex flex-column align-items-center me-3"> {/* Group for movement controls */}
                 {/* Vertical Movement Controls (Top) */}
                 <Button 

@@ -47,10 +47,12 @@
 
 .pfp-editor-icon {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 190px; /* Adjust size as needed */
-    height: auto; /* Adjust size as needed */
+    bottom: 3%;
+    right: 3%;
+    width: 10vw;
+    max-width: 190px;
+    min-width: 80px;
+    height: auto;
     cursor: pointer;
     z-index: 3; /* Ensure it's above other elements */
     border-radius: 50%;
@@ -63,9 +65,11 @@
 
 .shop-icon {
     position: absolute;
-    bottom: 30px;
-    left: 30px;
-    width: 160px;
+    bottom: 3%;
+    left: 3%;
+    width: 9vw;
+    max-width: 160px;
+    min-width: 70px;
     height: auto;
     cursor: pointer;
     z-index: 3;
@@ -85,17 +89,5 @@
 
     .hero-content .lead {
         font-size: 1.1rem; /* Smaller font for mobile */
-    }
-
-    .pfp-editor-icon {
-        width: 120px; /* Smaller icon for mobile */
-        bottom: 15px;
-        right: 15px;
-    }
-
-    .shop-icon {
-        width: 100px; /* Smaller icon for mobile */
-        bottom: 25px;
-        left: 25px;
     }
 }

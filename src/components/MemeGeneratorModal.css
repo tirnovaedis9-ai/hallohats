@@ -109,6 +109,18 @@
         width: 100% !important; /* Force override of inline attributes */
         height: auto !important;
     }
+
+    .meme-controls-container {
+        flex-direction: column;
+    }
+
+    .meme-controls-container .vr {
+        display: none; /* Hide vertical separator */
+    }
+
+    .meme-controls-container > .d-flex.flex-column {
+        margin: 1rem 0 !important; /* Override bootstrap margin helpers */
+    }
 }
 
 @media (min-width: 992px) {
