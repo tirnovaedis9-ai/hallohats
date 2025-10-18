@@ -33,7 +33,7 @@
     font-weight: bold;
     padding: 12px 35px;
     border-radius: 50px;
-    background-color: var(--primary-red);
+    background-color: #FFBF00;
     border: none;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 0 20px rgba(229, 57, 53, 0.7);
@@ -42,7 +42,7 @@
 .hero-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 30px rgba(229, 57, 53, 1);
-    background-color: var(--secondary-red);
+    background-color: #FFA000;
 }
 
 .pfp-editor-icon {

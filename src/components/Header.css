@@ -6,6 +6,7 @@
   height: 40px;
   margin-right: 10px;
   border-radius: 50%;
+  border: 2px solid black;
 }
 
 .navbar-brand {
