@@ -6,7 +6,7 @@ import './Header.css';
 import logo from '../assets/images/logo.png';
 
 const Header = ({ theme, toggleTheme }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="custom-red" variant="dark" fixed="top">

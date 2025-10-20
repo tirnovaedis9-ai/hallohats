@@ -52,7 +52,15 @@
     "rotate": "Rotate:",
     "rotate_x": "Rotate X:",
     "rotate_y": "Rotate Y:",
-    "reset_all": "Reset All"
+    "reset_all": "Reset All",
+    "background_color": "Background:",
+    "transparent": "Transparent",
+    "custom_color": "Custom Color",
+    "remove_background": "Remove BG",
+    "video_mode": "Video Mode",
+    "photo_mode": "Photo Mode",
+    "recording": "Creating video...",
+    "converting": "Converting..."
   },
   "shop": {
     "title": "CMC Merch Shop",

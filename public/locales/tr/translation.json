@@ -52,7 +52,14 @@
     "rotate": "Döndür:",
     "rotate_x": "X Ekseni Döndür:",
     "rotate_y": "Y Ekseni Döndür:",
-    "reset_all": "Tümünü Sıfırla"
+    "reset_all": "Tümünü Sıfırla",
+    "background_color": "Arka Plan:",
+    "transparent": "Transparan",
+    "custom_color": "Özel Renk",
+    "remove_background": "Arka Planı Kaldır",
+    "video_mode": "Video Modu",
+    "photo_mode": "Fotoğraf Modu",
+    "recording": "Video oluşturuluyor..."
   },
   "shop": {
     "title": "CMC Ürün Mağazası",

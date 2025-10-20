@@ -252,7 +252,7 @@
 
 /* Theme-specific styles */
 .light-theme .shop-modal .modal-content {
-  background-color: #ffffff;
+  background-color: var(--light-card-bg);
   color: #212529;
 }
 

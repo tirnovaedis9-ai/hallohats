@@ -161,9 +161,143 @@
 }
 
 .controls-active .btn {
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);;
 }
 
 .controls-active .form-range {
     filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
+}
+
+/* Color Palette Styles */
+.editor-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-palette-container {
+    margin: 0;
+}
+
+.color-palette {
+    display: flex;
+    flex-direction: row; /* Changed from column to row */
+    align-items: center;
+    gap: 7px; /* Reduced from 10px */
+}
+
+.color-swatch {
+    width: 20px; /* Reduced from 28px */
+    height: 20px; /* Reduced from 28px */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    position: relative; /* For custom input positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.selected {
+    border-color: #007bff;
+    transform: scale(1.15);
+    box-shadow: 0 0 8px #007bff;
+}
+
+.color-swatch.transparent {
+    background-image: 
+        linear-gradient(45deg, #ccc 25%, transparent 25%), 
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+    border: 2px solid #888;
+}
+
+.color-swatch.transparent.selected {
+    border-color: #007bff;
+}
+
+.custom-color-swatch {
+    font-size: 18px; /* Adjust icon size */
+    background-color: #f0f0f0;
+    border: 2px dashed #888;
+}
+
+.dark-theme .custom-color-swatch {
+    background-color: #444;
+    border-color: #666;
+}
+
+.custom-color-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Make the input itself invisible */
+    cursor: pointer;
+}
+
+.bg-toggle {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.bg-toggle .form-check-label {
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.bg-toggle .form-check-input {
+    font-size: 1.2rem;
+}
+
+/* Mode Toggle Switch */
+.mode-toggle {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 4px;
+    cursor: pointer;
+    border: 1px solid #555;
+}
+
+.toggle-option {
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 16px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.toggle-option.active {
+    background-color: #007bff;
+    box-shadow: 0 0 10px #007bff;
+}
+
+.modal-header {
+    position: relative; /* Needed for absolute positioning of children */
+}
+
+.modal-header .color-palette-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Remove previous flex properties that are no longer needed */
+    display: flex; 
+    justify-content: center;
 }
