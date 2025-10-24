@@ -30,6 +30,16 @@
     "team": "チーム",
     "public_sale": "公開販売"
   },
+  "tokenInfo": {
+    "title": "トークン情報",
+    "name": "名前",
+    "name_value": "CoinMarketCapped",
+    "symbol": "シンボル",
+    "symbol_value": "CMC",
+    "supply": "総供給量",
+    "supply_value": "1.000.000.000",
+    "contract": "契約アドレス"
+  },
   "roadmap": {
     "title": "私たちの戦略的ロードマップ",
     "phase1": "フェーズ1：点火と基盤 - 成功した公正なローンチ、Xでの初期コミュニティ成長、主要なSolana DEXへの上場。",

@@ -30,6 +30,16 @@
     "team": "Takım",
     "public_sale": "Halka Arz"
   },
+  "tokenInfo": {
+    "title": "Token Bilgileri",
+    "name": "İsim",
+    "name_value": "CoinMarketCapped",
+    "symbol": "Sembol",
+    "symbol_value": "CMC",
+    "supply": "Toplam Arz",
+    "supply_value": "1.000.000.000",
+    "contract": "Kontrat Adresi"
+  },
   "roadmap": {
     "title": "Stratejik Yol Haritamız",
     "phase1": "Aşama 1: Ateşleme ve Temel - Başarılı adil başlangıç, X'te ilk topluluk büyümesi ve büyük Solana DEX'lerinde listelenme.",

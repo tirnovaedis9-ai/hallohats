@@ -30,6 +30,16 @@
     "team": "팀",
     "public_sale": "공개 판매"
   },
+  "tokenInfo": {
+    "title": "토큰 정보",
+    "name": "이름",
+    "name_value": "CoinMarketCapped",
+    "symbol": "심볼",
+    "symbol_value": "CMC",
+    "supply": "총 공급량",
+    "supply_value": "1.000.000.000",
+    "contract": "계약 주소"
+  },
   "roadmap": {
     "title": "우리의 전략적 로드맵",
     "phase1": "1단계: 점화 및 기반 - 성공적인 공정 출시, X에서 초기 커뮤니티 성장, 주요 솔라나 DEX 상장.",

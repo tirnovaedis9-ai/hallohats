@@ -7,6 +7,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Features from './components/Features';
 import Tokenomics from './components/Tokenomics';
+import TokenInfo from './components/TokenInfo';
 import Roadmap from './components/Roadmap';
 import Socials from './components/Socials';
 import Footer from './components/Footer';
@@ -64,6 +65,11 @@ function App() {
           <div id="tokenomics">
             <AnimatedSection>
               <Tokenomics />
+            </AnimatedSection>
+          </div>
+          <div id="tokeninfo">
+            <AnimatedSection>
+              <TokenInfo />
             </AnimatedSection>
           </div>
           <div id="roadmap">

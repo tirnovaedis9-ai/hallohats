@@ -30,6 +30,16 @@
     "team": "Đội ngũ",
     "public_sale": "Bán công khai"
   },
+  "tokenInfo": {
+    "title": "Thông tin mã thông báo",
+    "name": "Tên",
+    "name_value": "CoinMarketCapped",
+    "symbol": "Ký hiệu",
+    "symbol_value": "CMC",
+    "supply": "Tổng cung",
+    "supply_value": "1.000.000.000",
+    "contract": "Địa chỉ hợp đồng"
+  },
   "roadmap": {
     "title": "Lộ trình chiến lược của chúng tôi",
     "phase1": "Giai đoạn 1: Khởi động & Nền tảng - Ra mắt công bằng thành công, tăng trưởng cộng đồng ban đầu trên X, và niêm yết trên các DEX Solana lớn.",

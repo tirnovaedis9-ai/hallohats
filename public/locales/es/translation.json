@@ -30,6 +30,16 @@
     "team": "Equipo",
     "public_sale": "Venta pública"
   },
+  "tokenInfo": {
+    "title": "Información del Token",
+    "name": "Nombre",
+    "name_value": "CoinMarketCapped",
+    "symbol": "Símbolo",
+    "symbol_value": "CMC",
+    "supply": "Suministro Total",
+    "supply_value": "1.000.000.000",
+    "contract": "Dirección del Contrato"
+  },
   "roadmap": {
     "title": "Nuestra hoja de ruta estratégica",
     "phase1": "Fase 1: Ignición y Fundación - Lanzamiento justo exitoso, crecimiento inicial de la comunidad en X, y listado en los principales DEX de Solana.",

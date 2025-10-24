@@ -30,6 +30,16 @@
     "team": "Tim",
     "public_sale": "Penjualan Publik"
   },
+  "tokenInfo": {
+    "title": "Informasi Token",
+    "name": "Nama",
+    "name_value": "CoinMarketCapped",
+    "symbol": "Simbol",
+    "symbol_value": "CMC",
+    "supply": "Total Pasokan",
+    "supply_value": "1.000.000.000",
+    "contract": "Alamat Kontrak"
+  },
   "roadmap": {
     "title": "Peta Jalan Strategis Kami",
     "phase1": "Fase 1: Pengapian & Fondasi - Peluncuran yang adil berhasil, pertumbuhan komunitas awal di X, dan daftar di DEX Solana utama.",

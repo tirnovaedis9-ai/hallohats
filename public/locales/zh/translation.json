@@ -30,6 +30,16 @@
     "team": "团队",
     "public_sale": "公开发售"
   },
+  "tokenInfo": {
+    "title": "代币信息",
+    "name": "名称",
+    "name_value": "CoinMarketCapped",
+    "symbol": "符号",
+    "symbol_value": "CMC",
+    "supply": "总供应量",
+    "supply_value": "1.000.000.000",
+    "contract": "合约地址"
+  },
   "roadmap": {
     "title": "我们的战略路线图",
     "phase1": "阶段1：启动与基础 - 成功的公平启动，X上的初始社区增长，以及在主要Solana DEX上上市。",

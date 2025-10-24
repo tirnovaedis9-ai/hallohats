@@ -30,6 +30,16 @@
     "team": "Team",
     "public_sale": "Public Sale"
   },
+  "tokenInfo": {
+    "title": "Token Information",
+    "name": "Name",
+    "name_value": "CoinMarketCapped",
+    "symbol": "Symbol",
+    "symbol_value": "CMC",
+    "supply": "Total Supply",
+    "supply_value": "1,000,000,000",
+    "contract": "Contract Address"
+  },
   "roadmap": {
     "title": "Our Strategic Roadmap",
     "phase1": "Phase 1: Ignition & Foundation - Successful fair launch, initial community growth on X, and listing on major Solana DEXs.",
