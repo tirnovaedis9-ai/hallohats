@@ -41,7 +41,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
   const [action, setAction] = useState(null);
   const [startMouse, setStartMouse] = useState({ x: 0, y: 0 });
   const [startOverlayProps, setStartOverlayProps] = useState(null);
-  const [removeBg, setRemoveBg] = useState(true);
+  const [removeBg, setRemoveBg] = useState(false);
   const [originalFile, setOriginalFile] = useState(null);
   const mousePosRef = useRef({ x: 0, y: 0 });
 
