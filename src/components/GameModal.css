@@ -1,0 +1,80 @@
+.game-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* Allow hero section to be visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.game-modal-wrapper {
+  position: relative;
+}
+
+.game-modal-content {
+  position: relative;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+  border-radius: 8px;
+  width: 90vw;
+  height: 80vh;
+  max-width: 1200px;
+  overflow: hidden;
+  display: flex; 
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.score-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 15px 15px 0 0;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 1040;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-modal-close-btn {
+  position: absolute;
+  right: 40px;
+  transform: translateY(-100%); /* Position fully inside at top right */
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 15px 15px 0 0; /* Same as score notch */
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 1040;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border: none;
+}
+
+.game-modal-sound-btn {
+  position: absolute;
+  top: 0;
+  left: 40px; /* Position it to the left of the close button */
+  transform: translateY(-100%);
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 15px 15px 0 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 1040;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border: none;
+}

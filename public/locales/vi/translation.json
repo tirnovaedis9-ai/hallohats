@@ -75,5 +75,8 @@
     "close_button": "Đóng",
     "quantity": "Số lượng",
     "buy_now": "Mua ngay"
+  },
+  "orientation": {
+    "rotate_device": "Vui lòng xoay thiết bị của bạn để có trải nghiệm tốt nhất"
   }
 }

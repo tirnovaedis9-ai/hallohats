@@ -75,5 +75,8 @@
     "close_button": "Tutup",
     "quantity": "Jumlah",
     "buy_now": "Beli Sekarang"
+  },
+  "orientation": {
+    "rotate_device": "Silakan putar perangkat Anda untuk pengalaman terbaik"
   }
 }

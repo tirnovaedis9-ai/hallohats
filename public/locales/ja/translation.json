@@ -75,5 +75,8 @@
     "close_button": "閉じる",
     "quantity": "数量",
     "buy_now": "今すぐ購入"
+  },
+  "orientation": {
+    "rotate_device": "最高のエクスペリエンスのためにデバイスを回転させてください"
   }
 }

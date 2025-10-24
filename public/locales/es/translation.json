@@ -75,5 +75,8 @@
     "close_button": "Cerrar",
     "quantity": "Cantidad",
     "buy_now": "Comprar ahora"
+  },
+  "orientation": {
+    "rotate_device": "Por favor, rote su dispositivo para la mejor experiencia"
   }
 }

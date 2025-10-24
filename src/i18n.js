@@ -16,6 +16,7 @@ i18n
     detection: {
       order: ['querystring', 'navigator', 'cookie', 'localStorage', 'sessionStorage', 'htmlTag'],
       caches: ['cookie'],
+      load: 'languageOnly', // Add this to strip region codes like -GB
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',

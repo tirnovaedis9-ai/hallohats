@@ -75,5 +75,8 @@
     "close_button": "닫기",
     "quantity": "수량",
     "buy_now": "지금 구매"
+  },
+  "orientation": {
+    "rotate_device": "최상의 경험을 위해 기기를 회전하십시오"
   }
 }

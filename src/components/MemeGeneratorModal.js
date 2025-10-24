@@ -28,7 +28,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
   const [rotateIcon, setRotateIcon] = useState(null);
   const [isFileSelected, setIsFileSelected] = useState(false);
         const interactionTimeoutRef = useRef(null); // Ref to store the timeout ID
-  const [ffmpeg, setFfmpeg] = useState(null);
+  const ffmpegRef = useRef(new FFmpeg());
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
   
@@ -259,16 +259,18 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
 
   useEffect(() => {
     const loadFFmpeg = async () => {
-      const ffmpegInstance = new FFmpeg({
-        log: true,
-        corePath: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/ffmpeg-core.js'
+      const ffmpeg = ffmpegRef.current;
+      ffmpeg.on('log', ({ message }) => {
+        console.log(message);
       });
       try {
-        await ffmpegInstance.load();
-        setFfmpeg(ffmpegInstance);
+        await ffmpeg.load({
+          coreURL: "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm/ffmpeg-core.js",
+          wasmURL: "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm/ffmpeg-core.wasm"
+        });
         setFfmpegLoaded(true);
       } catch (error) {
-        console.error("Failed to load ffmpeg-core.js");
+        console.error("Failed to load ffmpeg-core.js", error);
       }
     };
     loadFFmpeg();
@@ -667,13 +669,14 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       return;
     }
     setIsConverting(true);
+    const ffmpeg = ffmpegRef.current;
     try {
       const inputFileName = 'input.webm';
       const outputFileName = 'output.mp4';
 
       await ffmpeg.writeFile(inputFileName, await fetchFile(webmBlob));
 
-      await ffmpeg.exec(['-i', inputFileName, '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', outputFileName]);
+      await ffmpeg.exec(['-i', inputFileName, '-vcodec', 'libx264', '-acodec', 'aac', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', outputFileName]);
 
       const data = await ffmpeg.readFile(outputFileName);
 

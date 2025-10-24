@@ -1,0 +1,24 @@
+/* All styles for .coin are now in Game.css */
+
+.coin img {
+  width: 100%;
+  height: 100%;
+}
+
+.obstacle {
+  width: 40px; /* Set a fixed width for the container */
+}
+
+.obstacle img {
+  width: 100%; /* Make the image fill the container */
+  height: 80px; /* Set a fixed height for the image */
+}
+
+@keyframes move-coin {
+  from {
+    right: -10%;
+  }
+  to {
+    right: 110%;
+  }
+}

@@ -36,7 +36,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../assets/images/logo.png');
+    background-image: url('../assets/images/generatorBG.png');
     background-position: center 60%; /* Moved down slightly */
     background-repeat: no-repeat;
     background-size: cover;

@@ -82,5 +82,8 @@
     "close_button": "Kapat",
     "quantity": "Miktar",
     "buy_now": "Şimdi Al"
+  },
+  "orientation": {
+    "rotate_device": "En iyi deneyim için lütfen cihazınızı döndürün"
   }
 }

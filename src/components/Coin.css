@@ -1,0 +1,15 @@
+/* All styles for .coin are now in Game.css */
+
+.coin img {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes move-coin {
+  from {
+    right: -10%;
+  }
+  to {
+    right: 110%;
+  }
+}
