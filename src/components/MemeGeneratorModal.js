@@ -15,7 +15,7 @@ const defaultBtcProps = { x: -150, y: 150, scale: 0.08, rotation: 0, minScale: 0
 const defaultWalmartProps = { x: 150, y: 150, scale: 0.08, rotation: 0, minScale: 0.01, maxScale: 0.25, rotateX: 0, rotateY: 0 };
 
 const COOLDOWN_MINUTES = 30;
-const REMBG_API_URL = "http://localhost:8000/remove-background";
+const REMBG_API_URL = "/.netlify/functions/main";
 
 const MemeGeneratorModal = ({ show, onHide, theme }) => {
   const { t } = useTranslation();
