@@ -12,15 +12,15 @@
     "buy_button": "지금 구매"
   },
   "about": {
-    "title": "이것은 CoinMarketCapped입니다",
-    "text": "우리는 단순한 또 다른 코인이 아닙니다. 우리는 움직임입니다. 고속, 저비용 솔라나 블록체인에서 탄생한 CMC는 커뮤니티의 힘과 유머의 보편적인 언어에 대한 찬사입니다. 우리의 임무는 모든 구성원이 목소리를 내고 우리의 집단적 성공에 참여할 수 있는 분산형 생태계를 만드는 것입니다. 우리는 웃음뿐만 아니라 장기적인 성장을 위한 탄력 있고 활기찬 커뮤니티를 구축하기 위해 밈의 힘을 활용하고 있습니다."
+    "title": "이것은 hallohats입니다",
+    "text": "우리는 단순한 또 다른 코인이 아닙니다. 우리는 움직임입니다. 고속, 저비용 솔라나 블록체인에서 탄생한 HOT는 커뮤니티의 힘과 유머의 보편적인 언어에 대한 찬사입니다. 우리의 임무는 모든 구성원이 목소리를 내고 우리의 집단적 성공에 참여할 수 있는 분산형 생태계를 만드는 것입니다. 우리는 웃음뿐만 아니라 장기적인 성장을 위한 탄력 있고 활기찬 커뮤니티를 구축하기 위해 밈의 힘을 활용하고 있습니다."
   },
   "features": {
     "title": "핵심 원칙",
     "feature1_title": "커뮤니티 거버넌스",
-    "feature1_text": "CMC는 커뮤니티가 소유합니다. 주요 결정 및 향후 개발은 커뮤니티 합의에 따라 진행됩니다.",
+    "feature1_text": "hallohats는 커뮤니티가 소유합니다. 주요 결정 및 향후 개발은 커뮤니티 합의에 따라 진행됩니다.",
     "feature2_title": "투명한 출시",
-    "feature2_text": "CMC는 투명성을 핵심으로 출시되었습니다. 공급량의 대부분은 커뮤니티에 전념합니다.",
+    "feature2_text": "hallohats는 투명성을 핵심으로 출시되었습니다. 공급량의 대부분은 커뮤니티에 전념합니다.",
     "feature3_title": "솔라나 기반 구축",
     "feature3_text": "솔라나의 번개처럼 빠른 네트워크를 활용하여 거의 즉각적인 거래와 믿을 수 없을 정도로 낮은 수수료를 제공합니다."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "토큰 정보",
     "name": "이름",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "심볼",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "총 공급량",
     "supply_value": "1.000.000.000",
     "contract": "계약 주소"
@@ -50,43 +50,21 @@
     "title": "당신이 네트워크입니다"
   },
   "footer": {
-    "text": "CoinMarketCapped. 커뮤니티를 위해, 커뮤니티에 의해."
+    "text": "hallohats. 커뮤니티를 위해, 커뮤니티에 의해."
   },
   "meme_generator": {
-    "title": "CMC 밈 생성기",
+    "title": "hallohats 밈 생성기",
     "upload_placeholder": "사진 업로드를 위해 클릭하세요",
     "detecting_face": "얼굴 감지 중...",
     "close_button": "닫기",
     "download_button": "밈 다운로드",
     "scale": "크기:",
     "rotate": "회전:",
-    "rotate_x": "X 회전:",
-    "rotate_y": "Y 회전:",
+    "rotate_x": "피치:",
+    "rotate_y": "요:",
     "reset_all": "모두 재설정"
   },
-  "shop": {
-    "title": "CMC 상품 상점",
-    "product_name": "CMC \"밈 코인을 다시 재미있게 만들자\" 모자",
-    "product_description": "CoinMarketCapped 커뮤니티의 공식 모자. 고품질 자수, 모든 사이즈에 적합. 당신의 지지를 보여주세요!",
-    "shipping_unavailable": "현재 귀하의 국가로 배송이 불가능합니다.",
-    "add_to_cart": "장바구니에 추가",
-    "reviews_title": "사람들이 말하는 것",
-    "review1_text": "이 모자는 전설적입니다! 품질이 놀랍고 어디를 가든 칭찬을 받습니다. 진정한 CMC 보유자라면 필수품입니다.",
-    "review2_text": "WAGMI! 드디어 이해하는 상품이 나왔습니다. 저와 제 형제를 위해 하나씩 샀습니다. 달로!",
-    "review3_text": "저는 이 모자를 모든 암호화폐 모임에 쓰고 갑니다. 대화를 시작하기에 아주 좋습니다. #CMC",
-    "review4_text": "견고한 품질, 내구성이 느껴집니다. 사진과 똑같이 보입니다.",
-    "review5_text": "이것은 CMC 군대의 유니폼입니다. 이 커뮤니티의 일원이 되어 기쁩니다.",
-    "review6_text": "지난주에 모자를 받았는데 아직 벗지 않았습니다. 매우 편안합니다.",
-    "review7_text": "바느질이 최고 수준입니다. 싸게 만들어지지 않았다는 것을 알 수 있습니다.",
-    "review8_text": "가자! 최고의 밈 코인, 최고의 커뮤니티, 최고의 모자.",
-    "review9_text": "하나 살까 생각 중이라면 그냥 사세요. 후회하지 않을 겁니다.",
-    "review10_text": "이 멋진 장비로 CMC를 대표하게 되어 자랑스럽습니다.",
-    "review11_text": "배송 상자가 열린 채로 도착했지만 제품 품질은 꽤 좋습니다.",
-    "close_button": "닫기",
-    "quantity": "수량",
-    "buy_now": "지금 구매"
-  },
   "orientation": {
-    "rotate_device": "최상의 경험을 위해 기기를 회전하십시오"
+    "rotate_device": "최고의 경험을 위해 기기를 회전하십시오"
   }
 }

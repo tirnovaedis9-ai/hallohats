@@ -12,15 +12,15 @@
     "buy_button": "Şimdi Al"
   },
   "about": {
-    "title": "İşte Bu CoinMarketCapped",
-    "text": "Biz sadece bir coin değil, bir hareketiz. Yüksek hızlı, düşük maliyetli Solana blok zincirinde doğan CMC, topluluğun gücüne ve mizahın evrensel diline bir övgüdür. Misyonumuz, her üyenin ortak başarımızda söz sahibi olduğu ve paydaş olduğu merkeziyetsiz bir ekosistem yaratmaktır. Memlerin gücünü sadece gülmek için değil, uzun vadeli büyümeye hazır, dirençli ve canlı bir topluluk oluşturmak için kullanıyoruz."
+    "title": "İşte Bu hallohats",
+    "text": "Biz sadece bir coin değil, bir hareketiz. Yüksek hızlı, düşük maliyetli Solana blok zincirinde doğan HOT, topluluğun gücüne ve mizahın evrensel diline bir övgüdür. Misyonumuz, her üyenin ortak başarımızda söz sahibi olduğu ve paydaş olduğu merkeziyetsiz bir ekosistem yaratmaktır. Memlerin gücünü sadece gülmek için değil, uzun vadeli büyümeye hazır, dirençli ve canlı bir topluluk oluşturmak için kullanıyoruz."
   },
   "features": {
     "title": "Temel İlkelerimiz",
     "feature1_title": "Topluluk Yönetimi",
-    "feature1_text": "CMC'nin sahibi topluluğudur. Kritik kararlar ve gelecekteki gelişmeler, topluluk konsensüsü ile yönlendirilir.",
+    "feature1_text": "hallohats'ın sahibi topluluğudur. Kritik kararlar ve gelecekteki gelişmeler, topluluk konsensüsü ile yönlendirilir.",
     "feature2_title": "Şeffaf Başlangıç",
-    "feature2_text": "CMC, merkezinde şeffaflıkla başlatıldı. Arzın büyük çoğunluğu topluluğa adanmıştır.",
+    "feature2_text": "hallohats, merkezinde şeffaflıkla başlatıldı. Arzın büyük çoğunluğu topluluğa adanmıştır.",
     "feature3_title": "Solana Üzerine İnşa Edildi",
     "feature3_text": "Neredeyse anlık işlemler ve inanılmaz derecede düşük ücretler için Solana'nın ışık hızındaki ağından yararlanıyoruz."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "Token Bilgileri",
     "name": "İsim",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "Sembol",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "Toplam Arz",
     "supply_value": "1.000.000.000",
     "contract": "Kontrat Adresi"
@@ -50,7 +50,7 @@
     "title": "Gücü Elinde Tutan Sensin"
   },
   "footer": {
-    "text": "CoinMarketCapped. Topluluk için, topluluk tarafından."
+    "text": "hallohats. Topluluk için, topluluk tarafından."
   },
   "meme_generator": {
     "title": "CMC Meme Oluşturucu",
@@ -60,8 +60,8 @@
     "download_button": "Meme'i İndir",
     "scale": "Ölçek:",
     "rotate": "Döndür:",
-    "rotate_x": "X Ekseni Döndür:",
-    "rotate_y": "Y Ekseni Döndür:",
+    "rotate_x": "Yunuslama:",
+    "rotate_y": "Sapma:",
     "reset_all": "Tümünü Sıfırla",
     "background_color": "Arka Plan:",
     "transparent": "Transparan",
@@ -69,31 +69,11 @@
     "remove_background": "Arka Planı Kaldır",
     "video_mode": "Video Modu",
     "photo_mode": "Fotoğraf Modu",
-    "recording": "Video oluşturuluyor..."
-  },
-  "shop": {
-    "title": "CMC Ürün Mağazası",
-    "product_name": "CMC \"Make Meme Coin Fun Again\" Şapkası",
-    "product_description": "CoinMarketCapped topluluğunun resmi şapkası. Yüksek kaliteli nakış, standart beden. Desteğinizi gösterin!",
-    "shipping_unavailable": "Ülkenize gönderim şu anda yapılamamaktadır.",
-    "add_to_cart": "Sepete Ekle",
-    "reviews_title": "İnsanlar Ne Diyor",
-    "review1_text": "Bu şapka efsane! Kalitesi harika ve gittiğim her yerde iltifat alıyorum. Her gerçek CMC sahibinin sahip olması gereken bir ürün.",
-    "review2_text": "WAGMI! Sonunda, olayı anlayan bir ürün. Kendime ve kardeşime birer tane aldım. Aya doğru!",
-    "review3_text": "Bu şapkayı tüm kripto buluşmalarına takıyorum. Harika bir sohbet başlatıcı. #CMC",
-    "review4_text": "Sağlam kalite, dayanıklı hissettiriyor. Tam olarak resimdeki gibi görünüyor.",
-    "review5_text": "Bu, CMC ordusunun üniforması. Bu topluluğun bir parçası olmaktan mutluluk duyuyorum.",
-    "review6_text": "Şapkamı geçen hafta aldım ve hiç çıkarmadım. Süper rahat.",
-    "review7_text": "Dikişler birinci sınıf. Ucuz yapılmadığı belli.",
-    "review8_text": "Hadi gidelim! En iyi meme coin, en iyi topluluk, en iyi şapka.",
-    "review9_text": "Eğer bir tane almayı düşünüyorsanız, sadece yapın. Pişman olmayacaksınız.",
-    "review10_text": "Bu harika ekipmanla CMC'yi temsil etmekten gurur duyuyorum.",
-    "review11_text": "Kargo kutusu açık geldi ama ürünün kalitesi gayet iyi.",
-    "close_button": "Kapat",
-    "quantity": "Miktar",
-    "buy_now": "Şimdi Al"
+    "recording": "Video oluşturuluyor...",
+    "cooldown_active": "Bekleme süresi aktif. Lütfen {{time}} bekleyin.",
+    "rembg_error": "Arka plan kaldırma hizmeti çalışmıyor. Lütfen yerel sunucuyu başlatın."
   },
   "orientation": {
-    "rotate_device": "En iyi deneyim için lütfen cihazınızı döndürün"
+    "rotate_device": "Lütfen en iyi deneyim için cihazınızı döndürün"
   }
 }

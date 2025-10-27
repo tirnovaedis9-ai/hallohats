@@ -9,8 +9,8 @@ const Tokenomics = () => {
   const { t } = useTranslation();
 
   const tokenData = [
-    { name: t('tokenomics.public_sale'), value: 90, color: '#42A5F5' }, // Blue
-    { name: t('tokenomics.team'), value: 10, color: '#E53935' },     // Red
+    { name: t('tokenomics.public_sale'), value: 90, color: '#ff7518' }, // Orange
+    { name: t('tokenomics.team'), value: 10, color: '#9d4edd' },     // Purple
   ];
 
   // Create the conic-gradient string from the data

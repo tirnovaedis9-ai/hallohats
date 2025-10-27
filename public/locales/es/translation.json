@@ -12,15 +12,15 @@
     "buy_button": "Comprar ahora"
   },
   "about": {
-    "title": "Esto es CoinMarketCapped",
-    "text": "No somos solo otra moneda; somos un movimiento. Nacido en la blockchain de Solana, de alta velocidad y bajo costo, CMC es un tributo al poder de la comunidad y al lenguaje universal del humor. Nuestra misión es crear un ecosistema descentralizado donde cada miembro tenga voz y participación en nuestro éxito colectivo. Estamos aprovechando el poder de los memes no solo para reír, sino para construir una comunidad resiliente y vibrante preparada para el crecimiento a largo plazo."
+    "title": "Esto es hallohats",
+    "text": "No somos solo otra moneda; somos un movimiento. Nacido en la blockchain de Solana, de alta velocidad y bajo costo, HOT es un tributo al poder de la comunidad y al lenguaje universal del humor. Nuestra misión es crear un ecosistema descentralizado donde cada miembro tenga voz y participación en nuestro éxito colectivo. Estamos aprovechando el poder de los memes no solo para reír, sino para construir una comunidad resiliente y vibrante preparada para el crecimiento a largo plazo."
   },
   "features": {
     "title": "Principios fundamentales",
     "feature1_title": "Gobernado por la comunidad",
-    "feature1_text": "CMC es propiedad de su comunidad. Las decisiones clave y los desarrollos futuros son guiados por el consenso de la comunidad.",
+    "feature1_text": "hallohats es propiedad de su comunidad. Las decisiones clave y los desarrollos futuros son guiados por el consenso de la comunidad.",
     "feature2_title": "Lanzamiento transparente",
-    "feature2_text": "CMC se lanzó con la transparencia en su núcleo. La mayoría del suministro está dedicado a la comunidad.",
+    "feature2_text": "hallohats se lanzó con la transparencia en su núcleo. La mayoría del suministro está dedicado a la comunidad.",
     "feature3_title": "Construido sobre Solana",
     "feature3_text": "Aprovechando la red ultrarrápida de Solana para transacciones casi instantáneas y tarifas increíblemente bajas."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "Información del Token",
     "name": "Nombre",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "Símbolo",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "Suministro Total",
     "supply_value": "1.000.000.000",
     "contract": "Dirección del Contrato"
@@ -50,37 +50,37 @@
     "title": "Tú eres la red"
   },
   "footer": {
-    "text": "CoinMarketCapped. Para la comunidad, por la comunidad."
+    "text": "hallohats. Para la comunidad, por la comunidad."
   },
   "meme_generator": {
-    "title": "Generador de memes CMC",
+    "title": "Generador de memes hallohats",
     "upload_placeholder": "Haz clic para subir una foto",
     "detecting_face": "Detectando cara...",
     "close_button": "Cerrar",
     "download_button": "Descargar meme",
     "scale": "Escala:",
     "rotate": "Girar:",
-    "rotate_x": "Girar X:",
-    "rotate_y": "Girar Y:",
+    "rotate_x": "Cabeceo:",
+    "rotate_y": "Guiñada:",
     "reset_all": "Reiniciar todo"
   },
   "shop": {
-    "title": "Tienda de merchandising de CMC",
-    "product_name": "Gorra CMC \"Haz que Meme Coin sea divertido de nuevo\"",
+    "title": "Tienda de merchandising de hallohats",
+    "product_name": "Gorra hallohats \"Haz que Meme Coin sea divertido de nuevo\"",
     "product_description": "La gorra oficial de la comunidad CoinMarketCapped. Bordado de alta calidad, talla única. ¡Muestra tu apoyo!",
     "shipping_unavailable": "El envío a tu país no está disponible actualmente.",
     "add_to_cart": "Añadir al carrito",
     "reviews_title": "Lo que dice la gente",
-    "review1_text": "¡Esta gorra es legendaria! La calidad es increíble y recibo cumplidos donde quiera que vaya. Imprescindible para cualquier verdadero poseedor de CMC.",
+    "review1_text": "¡Esta gorra es legendaria! La calidad es increíble y recibo cumplidos donde quiera que vaya. Imprescindible para cualquier verdadero poseedor de HOT.",
     "review2_text": "¡WAGMI! Finalmente, algo de merchandising que lo entiende. Compré uno para mí y mi hermano. ¡A la luna!",
-    "review3_text": "Llevo esta gorra a todas las reuniones de criptomonedas. Es un gran iniciador de conversación. #CMC",
+    "review3_text": "Llevo esta gorra a todas las reuniones de criptomonedas. Es un gran iniciador de conversación. #HOT",
     "review4_text": "Calidad sólida, se siente duradera. Se ve exactamente como en la imagen.",
-    "review5_text": "Este es el uniforme para el ejército de CMC. Me alegra ser parte de esta comunidad.",
+    "review5_text": "Este es el uniforme para el ejército de hallohats. Me alegra ser parte de esta comunidad.",
     "review6_text": "Recibí mi gorra la semana pasada y no me la he quitado. Súper cómoda.",
     "review7_text": "La costura es de primera. Se nota que no fue hecha a bajo costo.",
     "review8_text": "¡Vamos! La mejor meme coin, la mejor comunidad, la mejor gorra.",
     "review9_text": "Si estás pensando en comprar una, solo hazlo. No te arrepentirás.",
-    "review10_text": "Orgulloso de representar a CMC con este increíble equipo.",
+    "review10_text": "Orgulloso de representar a hallohats con este increíble equipo.",
     "review11_text": "La caja de envío llegó abierta, pero la calidad del producto es bastante buena.",
     "close_button": "Cerrar",
     "quantity": "Cantidad",

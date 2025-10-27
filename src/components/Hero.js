@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Container, Button } from 'react-bootstrap';
 import './Hero.css';
 import icon3d from '../assets/images/3d-icon.png';
-import shopIcon from '../assets/images/shop.png';
+
 import startIcon from '../assets/game/start.png';
 import GameModal from './GameModal';
 
-const Hero = ({ onOpenMemeGenerator, onOpenShopModal }) => {
+const Hero = ({ onOpenMemeGenerator }) => {
   const { t } = useTranslation();
   const [isGameModalOpen, setGameModalOpen] = useState(false);
 
@@ -27,12 +27,7 @@ const Hero = ({ onOpenMemeGenerator, onOpenShopModal }) => {
         className="pfp-editor-icon"
         onClick={onOpenMemeGenerator}
       />
-      <img 
-        src={shopIcon} 
-        alt="Shop" 
-        className="shop-icon"
-        onClick={onOpenShopModal}
-      />
+
       <img
         src={startIcon}
         alt="Start Game"

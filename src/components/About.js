@@ -19,7 +19,7 @@ const About = () => {
             </div>
           </Col>
           <Col lg={5} className="text-center d-none d-lg-block">
-             <Image src={hatImage} alt="CMC Hat" fluid style={{ maxWidth: '300px' }} />
+             <Image src={hatImage} alt="HOT Hat" fluid style={{ maxWidth: '300px' }} />
           </Col>
         </Row>
       </Container>

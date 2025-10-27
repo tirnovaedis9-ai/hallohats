@@ -173,7 +173,6 @@
   height: auto;
   z-index: 10;
   filter: drop-shadow(2px 2px 3px rgba(255, 0, 0, 0.7));
-  transition: transform 0.3s ease-out;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -249,5 +248,191 @@
 }
 
 .sound-control-button:hover {
+
   background-color: #0c0;
+
+}
+
+
+
+/* --- RESPONSIVE DESIGN --- */
+
+
+
+/* Tablet and smaller desktops */
+
+@media (max-width: 1024px) {
+
+  .player-character {
+
+    width: 150px; /* Adjust player size */
+
+    left: 10%;
+
+  }
+
+
+
+  .game-world-image {
+
+    width: 35vw; /* Make planets a bit larger on smaller screens */
+
+  }
+
+
+
+  .game-over-message {
+
+    font-size: 3rem;
+
+  }
+
+
+
+  .restart-button {
+
+    font-size: 1.2rem;
+
+    padding: 8px 16px;
+
+  }
+
+}
+
+
+
+/* Mobile devices */
+
+@media (max-width: 768px) {
+
+  .game-road {
+
+    top: calc(50% - 100px);
+
+    height: calc(50% + 100px);
+
+  }
+
+
+
+  .player-character {
+
+    width: 100px; /* Smaller player for mobile */
+
+    left: 5%;
+
+    bottom: 35%; /* Adjust initial position */
+
+  }
+
+
+
+  .obstacle {
+
+     bottom: 35%; /* Match player position */
+
+  }
+
+
+
+  .coin {
+
+    width: 30px;
+
+    height: 30px;
+
+  }
+
+
+
+  .game-world-image {
+
+    width: 45vw;
+
+  }
+
+
+
+  .game-over-message {
+
+    font-size: 2.5rem;
+
+    width: 90%;
+
+    text-align: center;
+
+  }
+
+
+
+  .restart-button {
+
+    font-size: 1rem;
+
+    padding: 10px 20px;
+
+  }
+
+
+
+  .character-flipper {
+
+    width: 40px !important;
+
+    height: 40px !important;
+
+  }
+
+}
+
+
+
+/* Small mobile devices */
+
+@media (max-width: 480px) {
+
+  .game-road {
+
+    top: calc(50% - 80px);
+
+    height: calc(50% + 80px);
+
+  }
+
+
+
+  .player-character {
+
+    width: 80px;
+
+    left: 5%;
+
+    bottom: 32%;
+
+  }
+
+
+
+   .obstacle {
+
+     bottom: 32%;
+
+   }
+
+
+
+  .game-world-image {
+
+    width: 55vw;
+
+  }
+
+
+
+  .game-over-message {
+
+    font-size: 2rem;
+
+  }
+
 }

@@ -1,5 +1,5 @@
-.bg-custom-red {
-  background-color: var(--primary-red);
+.bg-custom-orange {
+  background-color: var(--primary-orange);
 }
 
 .logo-img {
@@ -31,7 +31,7 @@
 
 .theme-toggle-btn:hover {
   background-color: #fff;
-  color: var(--primary-red);
+  color: var(--primary-orange);
 }
 
 
@@ -40,6 +40,7 @@
 
 .navbar {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: var(--primary-orange);
 }
 
 .navbar-nav .nav-link {

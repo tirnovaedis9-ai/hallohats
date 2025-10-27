@@ -13,7 +13,7 @@ const Header = ({ theme, toggleTheme }) => {
       <Container>
         <Navbar.Brand href="#home">
           <img src={logo} alt="Logo" className="logo-img" />
-          CMC
+          hallohats
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

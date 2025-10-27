@@ -34,9 +34,7 @@ import uranusImage from '../assets/game/uURANÜSgame.png';
 import neptuneImage from '../assets/game/uNEPTÜNgame.png';
 import blackHoleImage from '../assets/game/uTON618game.png';
 import blackHoleSound from '../assets/game/sound/BlackHole.mp3';
-import gameMusic1 from '../assets/game/sound/sound (1).mp3';
-import gameMusic2 from '../assets/game/sound/sound (2).mp3';
-import gameMusic3 from '../assets/game/sound/sound (3).mp3';
+import halloweenMusic from '../assets/game/sound/halloween.mp3';
 import SoundSettingsModal from './SoundSettingsModal';
 
 import frontCaracter1 from '../assets/game/Caracter/frontCaracter (1).png';
@@ -104,11 +102,11 @@ const OBSTACLE_HEIGHT = 80;
 const COIN_WIDTH = 40;
 const COIN_HEIGHT = 40;
 
-const ALL_GAME_MUSIC = [gameMusic1, gameMusic2, gameMusic3];
+const ALL_GAME_MUSIC = [halloweenMusic];
 
 const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
   // Player State
-  const [isFalling, setIsFalling] = useState(false);
+    const [playerState, setPlayerState] = useState('running');
   const [jumpVelocity, setJumpVelocity] = useState(0);
   const [playerPositionY, setPlayerPositionY] = useState(0);
 
@@ -156,15 +154,16 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
   const toggleMusic = useCallback(() => {
     setIsMusicPlaying(prev => !prev);
   }, []);
+
   const CHARACTER_COUNT = 15;
   const CHARACTER_SIZE = 60;
-  const CHARACTER_HORIZONTAL_PADDING = 130;
   const CHARACTER_VERTICAL_OFFSET = 0;
   const CHARACTER_MAX_VERTICAL_RANGE = 200;
 
-  const [characters, setCharacters] = useState(() => {
+  const getInitialCharacters = useCallback((width) => {
     const initialCharacters = [];
-    const availableWidth = window.innerWidth - 2 * CHARACTER_HORIZONTAL_PADDING;
+    const horizontalPadding = width > 768 ? 130 : 30; // Responsive padding
+    const availableWidth = width - 2 * horizontalPadding;
     const availableHeight = CHARACTER_MAX_VERTICAL_RANGE - CHARACTER_SIZE;
 
     const numCols = Math.ceil(Math.sqrt(CHARACTER_COUNT));
@@ -176,11 +175,11 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
     let placedCount = 0;
     for (let row = 0; row < numRows && placedCount < CHARACTER_COUNT; row++) {
       for (let col = 0; col < numCols && placedCount < CHARACTER_COUNT; col++) {
-        const xOffset = CHARACTER_HORIZONTAL_PADDING + col * cellWidth;
+        const xOffset = horizontalPadding + col * cellWidth;
         const yOffset = CHARACTER_VERTICAL_OFFSET + row * cellHeight;
 
         let randomXInCell = xOffset + Math.random() * (cellWidth - CHARACTER_SIZE);
-        randomXInCell = Math.max(CHARACTER_HORIZONTAL_PADDING, Math.min(randomXInCell, window.innerWidth - CHARACTER_HORIZONTAL_PADDING - CHARACTER_SIZE));
+        randomXInCell = Math.max(horizontalPadding, Math.min(randomXInCell, width - horizontalPadding - CHARACTER_SIZE));
 
         let randomYInCell = yOffset + Math.random() * (cellHeight - CHARACTER_SIZE);
         randomYInCell = Math.max(CHARACTER_VERTICAL_OFFSET, Math.min(randomYInCell, CHARACTER_MAX_VERTICAL_RANGE - CHARACTER_SIZE));
@@ -197,7 +196,10 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
       }
     }
     return initialCharacters;
-  });
+  }, []);
+
+
+  const [characters, setCharacters] = useState(() => getInitialCharacters(window.innerWidth));
 
   // Screen Dimensions
   const [screenDimensions, setScreenDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -212,7 +214,7 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
   const coyoteTimeCounterRef = useRef(0);
   const floatDurationCounterRef = useRef(0);
   const jumpHoldRef = useRef(false);
-  const jumpLockRef = useRef(false); // Prevents multiple jump triggers
+  
   const gameOverRef = useRef(false);
 
   const animationFrameRef = useRef(null);
@@ -329,9 +331,7 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
             audioRef.current.loop = true;
             audioRef.current.play();
           }
-          if (gameMusicRef.current) {
-            gameMusicRef.current.pause();
-          }
+          
         }
 
         if (!isBlackHoleCenteredRef.current) {
@@ -376,8 +376,8 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
         newVelocity = JUMP_FORCE;
         coyoteTimeCounterRef.current = 0;
         floatDurationCounterRef.current = 0;
+        jumpRequestRef.current = false; // Reset the jump request only after a successful jump
       }
-      jumpRequestRef.current = false;
 
       if (jumpHoldRef.current && newVelocity > 0 && floatDurationCounterRef.current < MAX_FLOAT_FRAMES) {
         newVelocity += FLOAT_GRAVITY;
@@ -407,38 +407,46 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
         const updatedObstacles = prevObstacles.map(o => ({ ...o, x: o.x - GAME_SPEED })).filter(o => o.x > -OBSTACLE_WIDTH);
 
         for (const obstacle of updatedObstacles) {
-          const horizontalPadding = 10;
-          const verticalPadding = 0;
+          const horizontalPadding = 0; // Precise hitbox
+          const verticalPadding = 0; // Precise hitbox
           const obstacleBox = {
             x: obstacle.x + horizontalPadding,
-            y: groundY - OBSTACLE_HEIGHT + verticalPadding - 10, // Shifted up by 10 pixels
+            y: groundY - OBSTACLE_HEIGHT + verticalPadding,
             width: OBSTACLE_WIDTH - (horizontalPadding * 2),
             height: OBSTACLE_HEIGHT
           };
 
-          if (playerBox.x < obstacleBox.x + obstacleBox.width && playerBox.x + playerBox.width > obstacleBox.x) {
-            const playerBottom = playerBox.y + playerBox.height;
-            const obstacleTop = obstacleBox.y;
-            const landingTolerance = 5; // pixels
+          const playerRight = playerBox.x + playerBox.width;
+          const playerLeft = playerBox.x;
+          const playerTop = playerBox.y;
+          const playerBottom = playerBox.y + playerBox.height;
 
-            // Check for landing on top of the obstacle
-            if (
-              newVelocity <= 0 && // Player is moving down
-              playerBottom >= obstacleTop && // Player's feet are at or below the obstacle's top
-              (playerBottom - newVelocity) <= obstacleTop + landingTolerance // Player was above the obstacle in the previous frame
-            ) {
+          const obstacleRight = obstacleBox.x + obstacleBox.width;
+          const obstacleLeft = obstacleBox.x;
+          const obstacleTop = obstacleBox.y;
+          const obstacleBottom = obstacleBox.y + obstacleBox.height;
+
+          const isOverlappingX = playerRight > obstacleLeft && playerLeft < obstacleRight;
+          const isOverlappingY = playerTop < obstacleBottom && playerBottom > obstacleTop;
+
+          if (isOverlappingX && isOverlappingY) {
+            const playerCenterX = playerBox.x + playerBox.width / 2;
+            const obstacleLeft = obstacleBox.x;
+            const obstacleRight = obstacleBox.x + obstacleBox.width;
+
+            if (newVelocity <= 0 && playerCenterX > obstacleLeft && playerCenterX < obstacleRight) {
+              // Player is falling and horizontally centered on the obstacle.
+              // This is a landing.
               onSurface = true;
-              newY = OBSTACLE_HEIGHT - verticalPadding + 5; // Position player on top of the obstacle
+              newY = OBSTACLE_HEIGHT;
               newVelocity = 0;
               break;
-            } 
-            // Check for collision with the side of the obstacle
-            else if (playerBox.y < obstacleBox.y + obstacleBox.height && playerBox.y + playerBox.height > obstacleBox.y) {
+            } else {
+              // This is a side collision.
               gameOverRef.current = true;
               break;
             }
-          }
-        }
+          }        }
         return updatedObstacles;
       });
 
@@ -456,11 +464,10 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
 
       if (onSurface) { // If on any surface (obstacle or ground)
         coyoteTimeCounterRef.current = 10;
-        setIsFalling(false);
-        jumpLockRef.current = false;
+        setPlayerState('running');
       } else { // In air
         coyoteTimeCounterRef.current--;
-        setIsFalling(true);
+        setPlayerState('jumping');
       }
 
       setPlayerPositionY(newY);
@@ -517,14 +524,14 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isGameOver, isGamePaused, isFalling, jumpFrameIndex, runFrameIndex]);
+    }, [isGameOver, isGamePaused]);
 
 
   const restartGame = useCallback(() => {
     setIsGameOver(false);
     setObstacles([]);
     setCoins([]);
-    setIsFalling(false);
+    setPlayerState('running');
     setJumpVelocity(0);
     setPlayerPositionY(0);
     setScore(0);
@@ -537,7 +544,7 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
     setIsShaking(false);
     shakeTriggeredRef.current = false;
     setIsCharactersPulled(false);
-    jumpLockRef.current = false; // Reset jump lock
+    
     gameOverRef.current = false; // Reset game over ref
     if (audioRef.current) {
       audioRef.current.pause();
@@ -549,44 +556,9 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
       gameMusicRef.current.currentTime = 0;
       setIsMusicPlaying(true);
     }
-    setCharacters(() => {
-      const initialCharacters = [];
-      const availableWidth = window.innerWidth - 2 * CHARACTER_HORIZONTAL_PADDING;
-      const availableHeight = CHARACTER_MAX_VERTICAL_RANGE - CHARACTER_SIZE;
-
-      const numCols = Math.ceil(Math.sqrt(CHARACTER_COUNT));
-      const numRows = Math.ceil(CHARACTER_COUNT / numCols);
-
-      const cellWidth = availableWidth / numCols;
-      const cellHeight = availableHeight / numRows;
-
-      let placedCount = 0;
-      for (let row = 0; row < numRows && placedCount < CHARACTER_COUNT; row++) {
-        for (let col = 0; col < numCols && placedCount < CHARACTER_COUNT; col++) {
-          const xOffset = CHARACTER_HORIZONTAL_PADDING + col * cellWidth;
-          const yOffset = CHARACTER_VERTICAL_OFFSET + row * cellHeight;
-
-          let randomXInCell = xOffset + Math.random() * (cellWidth - CHARACTER_SIZE);
-          randomXInCell = Math.max(CHARACTER_HORIZONTAL_PADDING, Math.min(randomXInCell, window.innerWidth - CHARACTER_HORIZONTAL_PADDING - CHARACTER_SIZE));
-
-          let randomYInCell = yOffset + Math.random() * (cellHeight - CHARACTER_SIZE);
-          randomYInCell = Math.max(CHARACTER_VERTICAL_OFFSET, Math.min(randomYInCell, CHARACTER_MAX_VERTICAL_RANGE - CHARACTER_SIZE));
-
-          initialCharacters.push({
-            id: placedCount,
-            isFacingFront: Math.random() > 0.5,
-            image: Math.random() > 0.5 ? FRONT_CHARACTERS[placedCount] : BACK_CHARACTERS[placedCount],
-            status: 'active',
-            x: randomXInCell,
-            y: randomYInCell,
-          });
-          placedCount++;
-        }
-      }
-      return initialCharacters;
-    });
+    setCharacters(() => getInitialCharacters(window.innerWidth));
     hasIncrementedRef.current = false;
-  }, [setScore]);
+  }, [setScore, getInitialCharacters]);
 
   useEffect(() => {
     if (isGameOver) {
@@ -639,27 +611,27 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
   }, [characters, isGamePaused]);
 
   useEffect(() => {
-    if (isGameOver || isFalling || isGamePaused) return;
-    const frameInterval = setInterval(() => {
-      setRunFrameIndex(prevFrame => (prevFrame + 1) % runFrames.length);
-    }, 100);
-    return () => clearInterval(frameInterval);
-  }, [isGameOver, isFalling, isGamePaused]);
+    if (isGameOver || isGamePaused) return;
 
-  useEffect(() => {
-    if (!isFalling || isGamePaused) {
-      setJumpFrameIndex(0);
-      return;
+    if (playerState === 'running') {
+      setJumpFrameIndex(0); // Reset jump animation
+    } else if (playerState === 'jumping') {
+      setRunFrameIndex(0); // Reset run animation
     }
-    const frameInterval = setInterval(() => {
-      setJumpFrameIndex(prevFrame => {
-        const nextFrame = (prevFrame < jumpFrames.length - 1) ? prevFrame + 1 : prevFrame;
-        console.log('Jump Animation - jumpFrameIndex:', nextFrame, 'isFalling:', isFalling);
-        return nextFrame;
-      });
-    }, JUMP_ANIMATION_SPEED);
-    return () => clearInterval(frameInterval);
-  }, [isFalling, isGamePaused]);
+
+    const animationInterval = setInterval(() => {
+      if (playerState === 'running') {
+        setRunFrameIndex(prevFrame => (prevFrame + 1) % runFrames.length);
+      } else if (playerState === 'jumping') {
+        setJumpFrameIndex(prevFrame => {
+          const nextFrame = (prevFrame < jumpFrames.length - 1) ? prevFrame + 1 : prevFrame;
+          return nextFrame;
+        });
+      }
+    }, 100);
+
+    return () => clearInterval(animationInterval);
+  }, [playerState, isGameOver, isGamePaused]);
 
   useEffect(() => {
     if (isGameOver || isGamePaused) return;
@@ -695,6 +667,13 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
     coinTimer = setTimeout(createCoin, 1500);
     return () => clearTimeout(coinTimer);
   }, [isGameOver, screenDimensions.width, isGamePaused]);
+
+  useEffect(() => {
+    // Recalculate character positions on screen resize
+    if (getInitialCharacters) {
+      setCharacters(getInitialCharacters(screenDimensions.width));
+    }
+  }, [screenDimensions.width, getInitialCharacters]);
 
   useEffect(() => {
     if (isCharactersPulled) {
@@ -745,6 +724,10 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
               absorbedCount++;
               if (absorbedCount === shuffledCharacterIds.length) {
                 setIsShaking(false);
+                if (audioRef.current) {
+                  audioRef.current.pause();
+                  audioRef.current.currentTime = 0;
+                }
               }
               return updatedChars;
             });
@@ -765,11 +748,8 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
       restartGame();
       return;
     }
-    if (jumpLockRef.current) return;
-
     jumpRequestRef.current = true;
     jumpHoldRef.current = true;
-    jumpLockRef.current = true;
   }, [isGameOver, restartGame]);
 
   const handlePressEnd = useCallback((e) => {
@@ -816,7 +796,7 @@ const Game = ({ score, setScore, isSoundModalOpen, setIsSoundModalOpen }) => {
 
   
 
-  const playerImage = isFalling ? jumpFrames[jumpFrameIndex] : runFrames[runFrameIndex];
+    const playerImage = playerState === 'jumping' ? jumpFrames[jumpFrameIndex] : runFrames[runFrameIndex];
   const currentCelestialBodyImage = CELESTIAL_BODIES[celestialBodyIndex];
   const isBlackHole = currentCelestialBodyImage === blackHoleImage;
   const celestialVerticalPosition = isBlackHole ? '0%' : '0%';

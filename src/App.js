@@ -12,7 +12,7 @@ import Roadmap from './components/Roadmap';
 import Socials from './components/Socials';
 import Footer from './components/Footer';
 import MemeGeneratorModal from './components/MemeGeneratorModal';
-import ShopModal from './components/ShopModal';
+
 import ScrollToTopButton from './components/ScrollToTopButton';
 import AnimatedSection from './components/AnimatedSection';
 import LanguageSelector from './components/LanguageSelector';
@@ -22,7 +22,7 @@ function App() {
   const { t, i18n } = useTranslation();
   const [theme, setTheme] = useState('light');
   const [showMemeGenerator, setShowMemeGenerator] = useState(false);
-  const [showShopModal, setShowShopModal] = useState(false);
+
 
   useEffect(() => {
     const currentHour = new Date().getHours();
@@ -42,8 +42,8 @@ function App() {
   const handleOpenMemeGenerator = () => setShowMemeGenerator(true);
   const handleCloseMemeGenerator = () => setShowMemeGenerator(false);
 
-  const handleOpenShopModal = () => setShowShopModal(true);
-  const handleCloseShopModal = () => setShowShopModal(false);
+
+
 
   return (
     <Suspense fallback="Loading...">
@@ -51,7 +51,7 @@ function App() {
         <Header theme={theme} toggleTheme={toggleTheme} />
         <LanguageSelector />
         <main>
-          <Hero onOpenMemeGenerator={handleOpenMemeGenerator} onOpenShopModal={handleOpenShopModal} />
+          <Hero onOpenMemeGenerator={handleOpenMemeGenerator} />
           <div id="about">
             <AnimatedSection>
               <About />
@@ -86,7 +86,7 @@ function App() {
         <Footer />
         <ScrollToTopButton />
         <MemeGeneratorModal key={`meme-${i18n.language}`} show={showMemeGenerator} onHide={handleCloseMemeGenerator} theme={theme} t={t} />
-        <ShopModal key={`shop-${i18n.language}`} show={showShopModal} onHide={handleCloseShopModal} theme={theme} />
+
       </>
     </Suspense>
   );

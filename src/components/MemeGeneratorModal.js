@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import * as faceapi from 'face-api.js';
 import { useTranslation } from 'react-i18next';
-import { FaArrowLeft, FaArrowRight, FaArrowUp, FaArrowDown, FaUndo, FaCamera, FaVideo, FaImage, FaUser } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaArrowUp, FaArrowDown, FaUndo, FaCamera, FaVideo, FaImage, FaUser, FaExclamationTriangle } from 'react-icons/fa';
 import './MemeGeneratorModal.css';
 import hatImageSrc from '../assets/images/hat.png';
 import btcImageSrc from '../assets/images/btc.png';
 import walmartImageSrc from '../assets/images/walmart.png';
-import { removeBackground } from '@imgly/background-removal';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile } from '@ffmpeg/util';
 
@@ -15,92 +14,249 @@ const defaultHatProps = { x: 0, y: -100, scale: 0.4, rotation: 0, minScale: 0.05
 const defaultBtcProps = { x: -150, y: 150, scale: 0.08, rotation: 0, minScale: 0.01, maxScale: 0.25, rotateX: 0, rotateY: 0 };
 const defaultWalmartProps = { x: 150, y: 150, scale: 0.08, rotation: 0, minScale: 0.01, maxScale: 0.25, rotateX: 0, rotateY: 0 };
 
+const COOLDOWN_MINUTES = 30;
+const REMBG_API_URL = "http://localhost:8000/remove-background";
+
 const MemeGeneratorModal = ({ show, onHide, theme }) => {
   const { t } = useTranslation();
-  const MAX_CANVAS_SIZE = 500;
+  const MAX_CANVAS_SIZE = 2000;
   const canvasRef = useRef(null);
   const fileInputRef = useRef(null);
-  const imageCanvasRef = useRef(null); // Holds the user image with any erasing
-  const [userImage, setUserImage] = useState(null); // Holds the pristine original image
+  const imageCanvasRef = useRef(null);
+  const [userImage, setUserImage] = useState(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [isDetecting, setIsDetecting] = useState(false);
   const [memeText] = useState('+999');
   const [rotateIcon, setRotateIcon] = useState(null);
   const [isFileSelected, setIsFileSelected] = useState(false);
-        const interactionTimeoutRef = useRef(null); // Ref to store the timeout ID
+  const interactionTimeoutRef = useRef(null);
   const ffmpegRef = useRef(new FFmpeg());
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
-  
-  
   const [overlays, setOverlays] = useState([]);
-
-  // --- Interaction State ---
-  const [selectedOverlay, setSelectedOverlay] = useState(null); // State to track which overlay is selected
-  const [isInteracting, setIsInteracting] = useState(false); // New state for active interaction
+  const [selectedOverlay, setSelectedOverlay] = useState(null);
+  const [isInteracting, setIsInteracting] = useState(false);
   const [action, setAction] = useState(null);
   const [startMouse, setStartMouse] = useState({ x: 0, y: 0 });
   const [startOverlayProps, setStartOverlayProps] = useState(null);
   const [removeBg, setRemoveBg] = useState(false);
   const [originalFile, setOriginalFile] = useState(null);
   const mousePosRef = useRef({ x: 0, y: 0 });
-
   const [backgroundColor, setBackgroundColor] = useState('transparent');
   const [colorInputValue, setColorInputValue] = useState('#FFFFFF');
   const [canvasWidth, setCanvasWidth] = useState(400);
   const [canvasHeight, setCanvasHeight] = useState(400);
-  const [mode, setMode] = useState('photo'); // 'photo' or 'video'
+  const [mode, setMode] = useState('photo');
   const [isRecording, setIsRecording] = useState(false);
   const mediaRecorderRef = useRef(null);
   const recordedChunksRef = useRef([]);
   const animationFrameRef = useRef(null);
   const hueRef = useRef(0);
 
+  // --- New states for BG Removal Cooldown ---
+  const [isBgRemovalBlocked, setIsBgRemovalBlocked] = useState(false);
+  const [bgRemovalTimeLeft, setBgRemovalTimeLeft] = useState(0);
+  const [bgRemovalError, setBgRemovalError] = useState(null);
+  const cooldownTimerRef = useRef(null);
+
+  // --- Cooldown Logic ---
+  useEffect(() => {
+    if (!show) {
+      clearInterval(cooldownTimerRef.current);
+      return;
+    }
+
+    const checkCooldown = () => {
+      const lastUsed = localStorage.getItem('lastBgRemovalTimestamp');
+      if (lastUsed) {
+        const now = new Date().getTime();
+        const timePassed = now - parseInt(lastUsed, 10);
+        const cooldownMillis = COOLDOWN_MINUTES * 60 * 1000;
+
+        if (timePassed < cooldownMillis) {
+          const timeLeft = cooldownMillis - timePassed;
+          setIsBgRemovalBlocked(true);
+          setBgRemovalTimeLeft(timeLeft);
+
+          cooldownTimerRef.current = setInterval(() => {
+            setBgRemovalTimeLeft(prev => {
+              if (prev <= 1000) {
+                clearInterval(cooldownTimerRef.current);
+                setIsBgRemovalBlocked(false);
+                return 0;
+              }
+              return prev - 1000;
+            });
+          }, 1000);
+        } else {
+          setIsBgRemovalBlocked(false);
+          setBgRemovalTimeLeft(0);
+        }
+      }
+    };
+
+    checkCooldown();
+    
+    const handleStorageChange = () => checkCooldown();
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+        clearInterval(cooldownTimerRef.current);
+        window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [show]);
+
+  const formatTimeLeft = (ms) => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   const handleUploadClick = () => {
     fileInputRef.current.click();
   };
 
+  const processImageWithRembg = async (file) => {
+    if (isBgRemovalBlocked) {
+      console.log("Background removal is on cooldown.");
+      return null;
+    }
+
+    setIsDetecting(true);
+    setBgRemovalError(null);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch(REMBG_API_URL, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to connect to the local Rembg server.');
+      }
+
+      const blob = await response.blob();
+      localStorage.setItem('lastBgRemovalTimestamp', new Date().getTime().toString());
+      
+      // Manually trigger the cooldown check since storage event is not always reliable across tabs
+      const lastUsed = new Date().getTime().toString();
+      localStorage.setItem('lastBgRemovalTimestamp', lastUsed);
+      const cooldownMillis = COOLDOWN_MINUTES * 60 * 1000;
+      setIsBgRemovalBlocked(true);
+      setBgRemovalTimeLeft(cooldownMillis);
+       cooldownTimerRef.current = setInterval(() => {
+        setBgRemovalTimeLeft(prev => {
+          if (prev <= 1000) {
+            clearInterval(cooldownTimerRef.current);
+            setIsBgRemovalBlocked(false);
+            return 0;
+          }
+          return prev - 1000;
+        });
+      }, 1000);
+
+
+      return URL.createObjectURL(blob);
+
+    } catch (error) {
+      console.error("Error removing background with Rembg:", error);
+      setBgRemovalError(t('meme_generator.rembg_error'));
+      return null;
+    } finally {
+      setIsDetecting(false);
+    }
+  };
+
   const handleToggleRemoveBg = useCallback(async () => {
+    if (isBgRemovalBlocked) return;
     const newRemoveBgState = !removeBg;
     setRemoveBg(newRemoveBgState);
 
     if (!originalFile) return;
 
-    setIsDetecting(true);
-
     const loadImage = (src) => {
-        const img = new Image();
-        img.onload = () => {
-            setUserImage(img);
-            setIsDetecting(false); // Stop the spinner on success
-        };
-        img.onerror = () => {
-            console.error("Image load error during toggle.");
-            setIsDetecting(false);
-        };
-        img.src = src;
+      const img = new Image();
+      img.onload = () => {
+        setUserImage(img);
+        setIsDetecting(false);
+      };
+      img.onerror = () => {
+        console.error("Image load error during toggle.");
+        setIsDetecting(false);
+      };
+      img.src = src;
     };
 
-    try {
-      if (newRemoveBgState) {
-        console.log("Toggling ON -> Removing background...");
-        const blob = await removeBackground(originalFile, {
-          publicPath: 'https://staticimgly.com/@imgly/background-removal-data/1.7.0/dist/'
-        });
-        loadImage(URL.createObjectURL(blob));
+    if (newRemoveBgState) {
+      const processedImageSrc = await processImageWithRembg(originalFile);
+      if (processedImageSrc) {
+        loadImage(processedImageSrc);
       } else {
-        console.log("Toggling OFF -> Using original image...");
-        const reader = new FileReader();
-        reader.onload = (e) => loadImage(e.target.result);
-        reader.readAsDataURL(originalFile);
+        setRemoveBg(false);
       }
-    } catch (error) {
-      console.error("Error during background removal toggle:", error);
-      setIsDetecting(false);
+    } else {
+      const reader = new FileReader();
+      reader.onload = (e) => loadImage(e.target.result);
+      reader.readAsDataURL(originalFile);
     }
-  }, [removeBg, originalFile, setRemoveBg, setIsDetecting, setUserImage]);
+  }, [removeBg, originalFile, isBgRemovalBlocked, t, processImageWithRembg]);
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
 
+    setOriginalFile(file);
+    setIsFileSelected(true);
+    setBgRemovalError(null);
+
+    const processImage = (imageSrc) => {
+      const img = new Image();
+      img.onload = () => {
+        let newWidth = img.width;
+        let newHeight = img.height;
+        if (newWidth > MAX_CANVAS_SIZE || newHeight > MAX_CANVAS_SIZE) {
+          const ratio = newWidth > newHeight ? MAX_CANVAS_SIZE / newWidth : MAX_CANVAS_SIZE / newHeight;
+          newWidth *= ratio;
+          newHeight *= ratio;
+        }
+        setCanvasWidth(newWidth);
+        setCanvasHeight(newHeight);
+        setUserImage(img);
+        handleAutoPosition(img);
+      };
+      img.onerror = () => {
+        console.error("Failed to load image from source.");
+        setIsDetecting(false);
+      };
+      img.src = imageSrc;
+    };
+
+    if (removeBg) {
+      if (isBgRemovalBlocked) {
+          const reader = new FileReader();
+          reader.onload = (e) => processImage(e.target.result);
+          reader.readAsDataURL(file);
+          setRemoveBg(false);
+          return;
+      }
+      processImageWithRembg(file).then(processedImageSrc => {
+        if (processedImageSrc) {
+          processImage(processedImageSrc);
+        } else {
+           const reader = new FileReader();
+           reader.onload = (e) => processImage(e.target.result);
+           reader.readAsDataURL(file);
+           setRemoveBg(false);
+        }
+      });
+    } else {
+      const reader = new FileReader();
+      reader.onload = (e) => processImage(e.target.result);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleRemoveImage = () => {
     setUserImage(null);
@@ -109,6 +265,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
     setCanvasHeight(400);
     setOverlays([]);
     setIsFileSelected(false);
+    setBgRemovalError(null);
   };
 
   const handleMoveOverlayX = useCallback((direction) => {
@@ -229,8 +386,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
     }
   }, [selectedOverlay, overlays]);
 
-
-
   useEffect(() => {
     const icon = new Image();
     icon.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><path fill='#007bff' d='M12 4V2.21c0-.45.54-.67.85-.35l2.79 2.79c.2.2.2.51 0 .71l-2.79 2.79c-.31.31-.85.09-.85-.36V6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8s3.58-8 8-8Z'/></svg>");
@@ -286,7 +441,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
     const walmartImg = new Image();
     walmartImg.src = walmartImageSrc;
 
-    // Wait for overlay images to load to get their dimensions
     await Promise.all([
         new Promise(resolve => hatImg.onload = resolve),
         new Promise(resolve => btcImg.onload = resolve),
@@ -309,19 +463,13 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         detections.forEach((detection, index) => {
           console.log(`Processing face #${index + 1}`);
           const landmarks = detection.landmarks;
-
-          // --- General Face Metrics ---
           const jawline = landmarks.getJawOutline();
           const leftEye = landmarks.getLeftEye();
           const rightEye = landmarks.getRightEye();
-
-          // Face angle
           const faceAngle = Math.atan2(rightEye[3].y - leftEye[0].y, rightEye[3].x - leftEye[0].x) * 180 / Math.PI;
-
-          // --- Hat Calculation ---
           const faceWidth = landmarks.getJawOutline()[16].x - landmarks.getJawOutline()[0].x;
           let hatScale = (faceWidth / hatImg.width) * 1.5 * scaleX; 
-          const dynamicMaxHatScale = hatScale * 3; // Proportional max scale
+          const dynamicMaxHatScale = hatScale * 3;
           const hatX = (landmarks.getNose()[0].x * scaleX) - (canvas.width / 2);
           const hatY = (landmarks.getLeftEyeBrow()[2].y * scaleY) - (hatImg.height * hatScale * 0.5) - (canvas.height / 2);
 
@@ -333,23 +481,16 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
             x: hatX,
             y: hatY,
             scale: hatScale,
-            maxScale: dynamicMaxHatScale, // Use proportional max scale
+            maxScale: dynamicMaxHatScale,
             rotation: faceAngle,
             visible: true,
           });
 
-          // --- Logos Calculation (BTC & Walmart) ---
           const eyeWidth = (rightEye[3].x - rightEye[0].x) * scaleX;
           let logoScale = (eyeWidth / btcImg.width) * 0.9;
-          const dynamicMaxLogoScale = logoScale * 3; // Proportional max scale
-
-          // Y coordinate for both logos - aiming for the apple of the cheek
+          const dynamicMaxLogoScale = logoScale * 3;
           const cheekY = ((landmarks.getNose()[0].y + landmarks.getNose()[8].y) / 2) * scaleY;
-
-          // X coordinate for Walmart (user's right cheek, image left)
           const walmartX = (landmarks.getLeftEye()[0].x - eyeWidth * 0.5) * scaleX;
-
-          // X coordinate for BTC (user's left cheek, image right)
           const btcX = (landmarks.getRightEye()[3].x + eyeWidth * 0.5) * scaleX;
 
           newOverlays.push({
@@ -360,7 +501,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
             x: walmartX - (canvas.width / 2),
             y: cheekY - (canvas.height / 2),
             scale: logoScale,
-            maxScale: dynamicMaxLogoScale, // Use proportional max scale
+            maxScale: dynamicMaxLogoScale,
             rotation: faceAngle,
             visible: true,
           });
@@ -373,14 +514,13 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
             x: btcX - (canvas.width / 2),
             y: cheekY - (canvas.height / 2),
             scale: logoScale,
-            maxScale: dynamicMaxLogoScale, // Use proportional max scale
+            maxScale: dynamicMaxLogoScale,
             rotation: faceAngle,
             visible: true,
           });
         });
 
         setOverlays(newOverlays);
-        // Select the first hat by default
         if (newOverlays.length > 0) {
             setSelectedOverlay('hat-0');
         }
@@ -388,7 +528,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
 
       } else {
         console.log("No faces detected.");
-        setOverlays([]); // Clear overlays if no faces are found
+        setOverlays([]);
       }
     } catch (error) {
       console.error("Error in handleAutoPosition:", error);
@@ -401,7 +541,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
   const getHandles = useCallback((overlay) => {
     if (!overlay || !overlay.img) return {};
     const { scale, type } = overlay;
-    const scaleX = type === 'hat' ? overlay.scaleX || 1 : 1; // Get scaleX for hat, default to 1
+    const scaleX = type === 'hat' ? overlay.scaleX || 1 : 1;
     const halfW = (overlay.img.width * scale * scaleX) / 2;
     const halfH = (overlay.img.height * scale) / 2;
 
@@ -442,18 +582,27 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-
     const drawOverlay = (props) => {
       if (!props.img || !props.visible) return;
       ctx.save();
       ctx.translate(canvas.width / 2 + props.x, canvas.height / 2 + props.y);
       ctx.rotate(toRadians(props.rotation));
 
-      // Faux 3D effect
       const angleX = toRadians(props.rotateX);
       const angleY = toRadians(props.rotateY);
-      ctx.transform(1, Math.tan(angleX), Math.tan(angleY), 1, 0, 0); // Apply skews
-      ctx.scale(Math.cos(angleY), Math.cos(angleX)); // Apply foreshortening
+      const perspective = 500;
+      const f = perspective / (perspective + 0);
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+      const cosY = Math.cos(angleY);
+      const sinY = Math.sin(angleY);
+      const m11 = f * cosY;
+      const m12 = 0;
+      const m21 = f * sinX * sinY;
+      const m22 = f * cosX;
+      const m31 = 0;
+      const m32 = 0;
+      ctx.transform(m11, m21, m12, m22, m31, m32);
 
       ctx.save();
       const scaleX = props.type === 'hat' ? props.scaleX || 1 : 1;
@@ -470,21 +619,16 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       ctx.restore();
 
       if (props.id === selectedOverlay && !isInteracting && !isRecording) {
-        const handleSize = 16; // Made handles bigger for mobile
+        const handleSize = 16;
         ctx.strokeStyle = '#007bff';
         ctx.lineWidth = 2;
-        ctx.strokeRect(
-          -newWidth / 2, 
-          -newHeight / 2, 
-          newWidth, 
-          newHeight
-        );
+        ctx.strokeRect(-newWidth / 2, -newHeight / 2, newWidth, newHeight);
 
         const handles = getHandles(props);
         Object.values(handles).forEach(handle => {
           ctx.save();
           if (handle.action === 'rotate' && rotateIcon) {
-            const iconSize = 32; // Made handles bigger for mobile
+            const iconSize = 32;
             ctx.drawImage(rotateIcon, handle.x - iconSize / 2, handle.y - iconSize / 2, iconSize, iconSize);
           } else if (handle.action === 'resize' || handle.action === 'resize-x') {
             ctx.fillStyle = '#007bff';
@@ -501,16 +645,17 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
 
     if (userImage) {
         overlays.forEach(drawOverlay);
-
-        // Only draw memeText if user image is present
         ctx.save();
         ctx.shadowColor = 'purple';
         ctx.shadowBlur = 15;
-        ctx.font = `24px Poppins`;
+        const fontSize = Math.max(24, canvas.width * 0.05); // 5% of canvas width, with a minimum of 24px
+        ctx.font = `${fontSize}px Poppins`;
         ctx.fillStyle = '#00ff00';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'bottom';
-        ctx.fillText(memeText, 10, canvas.height - 10);
+        const textX = canvas.width * 0.02; // 2% from the left
+        const textY = canvas.height * 0.98; // 2% from the bottom
+        ctx.fillText(memeText, textX, textY);
         ctx.restore();
     }
 
@@ -519,64 +664,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
   useEffect(() => {
     drawCanvas();
   }, [drawCanvas]);
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    setOriginalFile(file);
-    setIsFileSelected(true);
-    setIsDetecting(true); // Show spinner
-
-    const processImage = (imageSrc) => {
-      const img = new Image();
-      img.onload = () => {
-        console.log("Image loaded, processing...");
-        let newWidth = img.width;
-        let newHeight = img.height;
-        if (newWidth > MAX_CANVAS_SIZE || newHeight > MAX_CANVAS_SIZE) {
-          if (newWidth > newHeight) {
-            newHeight = (newHeight / newWidth) * MAX_CANVAS_SIZE;
-            newWidth = MAX_CANVAS_SIZE;
-          } else {
-            newWidth = (newWidth / newHeight) * MAX_CANVAS_SIZE;
-            newHeight = MAX_CANVAS_SIZE;
-          }
-        }
-        setCanvasWidth(newWidth);
-        setCanvasHeight(newHeight);
-        setUserImage(img);
-        handleAutoPosition(img);
-      };
-      img.onerror = () => {
-        console.error("Failed to load image from source.");
-        setIsDetecting(false);
-      };
-      img.src = imageSrc;
-    };
-
-    if (removeBg) {
-      console.log("Background removal is ON. Calling removeBackground...");
-      removeBackground(file, {
-        publicPath: 'https://staticimgly.com/@imgly/background-removal-data/1.7.0/dist/'
-      })
-        .then((blob) => {
-          console.log("removeBackground successful.");
-          processImage(URL.createObjectURL(blob));
-        })
-        .catch((error) => {
-          console.error("Failed to remove background:", error, "Falling back to original image.");
-          const reader = new FileReader();
-          reader.onload = (e) => processImage(e.target.result);
-          reader.readAsDataURL(file);
-        });
-    } else {
-      console.log("Background removal is OFF. Loading original image.");
-      const reader = new FileReader();
-      reader.onload = (e) => processImage(e.target.result);
-      reader.readAsDataURL(file);
-    }
-  };
 
   useEffect(() => {
     if (mode === 'video' && userImage) {
@@ -603,12 +690,12 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
             const canvas = canvasRef.current;
             if (canvas) {
                 const link = document.createElement('a');
-                link.download = 'cmc_meme.png';
+                link.download = 'hot_meme.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             }
         }, 50);
-      } else { // Video Mode
+      } else { 
         setIsRecording(true);
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -621,7 +708,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         const stream = canvas.captureStream(60); 
         mediaRecorderRef.current = new MediaRecorder(stream, {
            mimeType: mimeType,
-           videoBitsPerSecond: 10000000 // 10 Mbps for maximum quality
+           videoBitsPerSecond: 10000000
         });
         recordedChunksRef.current = [];
   
@@ -646,8 +733,8 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         let frameCount = 0;
   
         const recordAnimation = () => {
-          if (frameCount < 300) { // 60 degrees / 0.2 increment = 300 frames
-            hueRef.current = frameCount * 0.2; // Direct calculation for precision
+          if (frameCount < 300) {
+            hueRef.current = frameCount * 0.2;
             setBackgroundColor(`hsl(${hueRef.current}, 100%, 50%)`);
             animationFrameRef.current = requestAnimationFrame(recordAnimation);
             frameCount++;
@@ -675,16 +762,14 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       const outputFileName = 'output.mp4';
 
       await ffmpeg.writeFile(inputFileName, await fetchFile(webmBlob));
-
-      await ffmpeg.exec(['-i', inputFileName, '-vcodec', 'libx264', '-acodec', 'aac', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', outputFileName]);
-
+      await ffmpeg.exec(['-i', inputFileName, '-c:v', 'copy', '-c:a', 'copy', outputFileName]);
       const data = await ffmpeg.readFile(outputFileName);
 
       const mp4Blob = new Blob([data.buffer], { type: 'video/mp4' });
       const url = URL.createObjectURL(mp4Blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'cmc_meme.mp4';
+      a.download = 'hot_meme.mp4';
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -717,8 +802,8 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
 
     if (checkHandles) {
       const handles = getHandles(overlay);
-      const resizeHandleVisualSize = 16; // From drawCanvas
-      const rotateHandleVisualSize = 32; // From drawCanvas
+      const resizeHandleVisualSize = 16;
+      const rotateHandleVisualSize = 32;
 
       for (const key in handles) {
         const handle = handles[key];
@@ -735,7 +820,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       }
     }
 
-    // If no handle hit (or not checking handles), check if inside the main body for drag
     if (
       rotatedX >= -halfWidth &&
       rotatedX <= halfWidth &&
@@ -761,7 +845,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
 
     mousePosRef.current = { x: mouseX, y: mouseY };
 
-    // Check for handle hits on the currently selected overlay first
     const selected = overlays.find(o => o.id === selectedOverlay);
     if (selected) {
       const hitResult = hitTest(mouseX, mouseY, selected, true);
@@ -774,9 +857,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       }
     }
 
-    // If no handle was hit, check for a hit on any overlay body
     let hitDetected = false;
-    // Iterate in reverse to check top-most overlays first
     for (let i = overlays.length - 1; i >= 0; i--) {
       const overlay = overlays[i];
       if (overlay.visible) {
@@ -788,7 +869,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
           setStartMouse({ x: mouseX, y: mouseY });
           setStartOverlayProps({ ...overlay });
           hitDetected = true;
-          break; // Stop after finding the first hit
+          break;
         }
       }
     }
@@ -796,7 +877,7 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
     if (!hitDetected) {
       setSelectedOverlay(null);
     }
-  }, [userImage, overlays, selectedOverlay, hitTest, setAction, setIsInteracting, setStartMouse, setStartOverlayProps, setSelectedOverlay]);
+  }, [userImage, overlays, selectedOverlay, hitTest]);
 
   const handleMouseMove = useCallback((e) => {
     if (!userImage) return;
@@ -810,7 +891,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
     const mouseY = (e.clientY - rect.top) * scaleY;
 
     if (action && selectedOverlay && startOverlayProps) {
-      // --- ACTION IN PROGRESS --- (Drag, Resize, Rotate)
       const { x: startX, y: startY } = startMouse;
 
       const updateOverlay = (props) => {
@@ -822,22 +902,20 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         const dy = mouseY - startY;
         updateOverlay({ x: startOverlayProps.x + dx, y: startOverlayProps.y + dy });
       } else if (action === 'resize-x') {
-        const { x: objX, y: objY, rotation, img, scale, scaleX: startScaleX } = startOverlayProps;
+        const { x: objX, y: objY, rotation, img, scaleX: startScaleX } = startOverlayProps;
         if (!img) return;
 
         const centerX = objX + canvas.width / 2;
         const centerY = objY + canvas.height / 2;
         
-        // Un-rotate start mouse position
         const startMouseVec = { x: startMouse.x - centerX, y: startMouse.y - centerY };
         const angleRad = -rotation * Math.PI / 180;
         const rotatedStartMouseX = startMouseVec.x * Math.cos(angleRad) - startMouseVec.y * Math.sin(angleRad);
 
-        // Un-rotate current mouse position
         const mouseVec = { x: mouseX - centerX, y: mouseY - centerY };
         const rotatedCurrentMouseX = mouseVec.x * Math.cos(angleRad) - mouseVec.y * Math.sin(angleRad);
 
-        if (rotatedStartMouseX === 0) return; // Avoid division by zero
+        if (rotatedStartMouseX === 0) return;
 
         const scaleMultiplier = rotatedCurrentMouseX / rotatedStartMouseX;
         const newScaleX = startScaleX * scaleMultiplier;
@@ -888,7 +966,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
         updateOverlay({ rotation: newRotation });
       }
     } else {
-      // --- NO ACTION - HOVER DETECTION --- 
       let cursor = 'default';
       let cursorSet = false;
 
@@ -926,9 +1003,9 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       setAction(null);
       const canvas = canvasRef.current;
       if(canvas) canvas.style.cursor = 'default';
-      setIsInteracting(false); // Set interacting to false
+      setIsInteracting(false);
     }
-  }, [action, setAction, setIsInteracting]);
+  }, [action]);
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
@@ -1008,96 +1085,74 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
       <Modal.Body>
         <Row className="justify-content-center">
           <Col md={8} className="text-center">
-                                        <div className="canvas-wrapper">
-                                          <div className="d-flex justify-content-center align-items-center mb-3 flex-wrap">
-                                              <div className="mode-toggle me-3" onClick={() => !(isDetecting || isRecording) && handleToggleRemoveBg()} title={t('meme_generator.remove_background')}>
-                                                <div className={`toggle-option ${!removeBg ? 'active' : ''}`}>
-                                                  <FaImage />
-                                                </div>
-                                                <div className={`toggle-option ${removeBg ? 'active' : ''}`}>
-                                                  <FaUser />
-                                                </div>
-                                              </div>
-                                              <div className="mode-toggle me-3" onClick={() => !isRecording && setMode(prev => prev === 'photo' ? 'video' : 'photo')}>
-                                                <div className={`toggle-option ${mode === 'photo' ? 'active' : ''}`}>
-                                                  <FaCamera />
-                                                </div>
-                                                <div className={`toggle-option ${mode === 'video' ? 'active' : ''}`}>
-                                                  <FaVideo />
-                                                </div>
-                                              </div>
-                                          </div>
-                                          <div className={`canvas-container ${!userImage ? 'no-image' : ''}`}>
-            
-
-                                {userImage && (
-
-                                  <button className="remove-image-btn" onClick={handleRemoveImage}>&times;</button>
-
-                                )}
-
-                                <canvas 
-
-                                  ref={canvasRef}
-
-                                  width={canvasWidth} 
-
-                                  height={canvasHeight}
-
-                                  onMouseDown={handleMouseDown}
-
-                                  onMouseMove={handleMouseMove}
-
-                                  onMouseUp={handleMouseUp}
-
-                                  onMouseLeave={handleMouseUp}
-
-              
-
-                                  onClick={!userImage ? handleUploadClick : undefined}
-
-                                  style={{ cursor: !userImage ? 'pointer' : 'auto' }}
-
-                                ></canvas>
-
-                                {!userImage && !isFileSelected && (
-
-                                  <div className="upload-placeholder" onClick={handleUploadClick}>
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-upload" viewBox="0 0 16 16">
-
-                                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-
-                                      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-
-                                    </svg>
-
-                                    <p>{t('meme_generator.upload_placeholder')}</p>
-
-                                  </div>
-
-                                )}
-
-                                {(isDetecting || isRecording || isConverting) && (
-
-                                  <div className="detection-spinner">
-
-                                    <Spinner animation="border" variant="danger" />
-
-                                    <p>{t(isConverting ? 'meme_generator.converting' : isRecording ? 'meme_generator.recording' : 'meme_generator.detecting_face')}</p>
-
-                                  </div>
-
-                                )}
-
-                              </div>
-
-                            </div>
-          
-                      {/* New Controls for positioning and scaling */}            {userImage && overlays.length > 0 && (
+            <div className="canvas-wrapper">
+              <div className="d-flex justify-content-center align-items-center mb-3 flex-wrap">
+                   <div 
+                      className={`mode-toggle me-3 ${isBgRemovalBlocked ? 'disabled' : ''}`}
+                      onClick={() => !(isDetecting || isRecording || isBgRemovalBlocked) && handleToggleRemoveBg()}
+                      title={isBgRemovalBlocked ? t('meme_generator.cooldown_active', { time: formatTimeLeft(bgRemovalTimeLeft) }) : t('meme_generator.remove_background')}
+                    >
+                    <div className={`toggle-option ${!removeBg ? 'active' : ''}`}>
+                      <FaImage />
+                    </div>
+                    <div className={`toggle-option ${removeBg ? 'active' : ''}`}>
+                      <FaUser />
+                    </div>
+                  </div>
+                  <div className="mode-toggle me-3" onClick={() => !isRecording && setMode(prev => prev === 'photo' ? 'video' : 'photo')}>
+                    <div className={`toggle-option ${mode === 'photo' ? 'active' : ''}`}>
+                      <FaCamera />
+                    </div>
+                    <div className={`toggle-option ${mode === 'video' ? 'active' : ''}`}>
+                      <FaVideo />
+                    </div>
+                  </div>
+              </div>
+               {isBgRemovalBlocked && (
+                <Alert variant="warning" className="p-2 small">
+                  {t('meme_generator.cooldown_active', { time: formatTimeLeft(bgRemovalTimeLeft) })}
+                </Alert>
+              )}
+              {bgRemovalError && (
+                <Alert variant="danger" className="p-2 small">
+                   <FaExclamationTriangle /> {bgRemovalError}
+                </Alert>
+              )}
+              <div className={`canvas-container ${!userImage ? 'no-image' : ''}`}>
+                {userImage && (
+                  <button className="remove-image-btn" onClick={handleRemoveImage}>&times;</button>
+                )}
+                <canvas 
+                  ref={canvasRef}
+                  width={canvasWidth} 
+                  height={canvasHeight}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseUp}
+                  onClick={!userImage ? handleUploadClick : undefined}
+                  style={{ cursor: !userImage ? 'pointer' : 'auto' }}
+                ></canvas>
+                {!userImage && !isFileSelected && (
+                  <div className="upload-placeholder" onClick={handleUploadClick}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-upload" viewBox="0 0 16 16">
+                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                    </svg>
+                    <p>{t('meme_generator.upload_placeholder')}</p>
+                  </div>
+                )}
+                {(isDetecting || isRecording || isConverting) && (
+                  <div className="detection-spinner">
+                    <Spinner animation="border" variant="danger" />
+                    <p>{t(isConverting ? 'meme_generator.converting' : isRecording ? 'meme_generator.recording' : 'meme_generator.detecting_face')}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            {userImage && overlays.length > 0 && (
             <div className={`meme-controls-container d-flex justify-content-center align-items-center mt-3 mb-3 ${selectedOverlay ? 'controls-active' : ''}`}>
-              <div className="d-flex flex-column align-items-center me-3"> {/* Group for movement controls */}
-                {/* Vertical Movement Controls (Top) */}
+              <div className="d-flex flex-column align-items-center me-3">
                 <Button 
                   variant="outline-secondary" 
                   onClick={() => handleMoveOverlayY('up')} 
@@ -1106,237 +1161,112 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
                 >
                   <FaArrowUp />
                 </Button>
-
-                                <div className="d-flex justify-content-center align-items-center">
-
-                                  {/* Horizontal Movement Controls */}
-
-                                  <Button 
-
-                                    variant="outline-secondary" 
-
-                                    onClick={() => handleMoveOverlayX('left')} 
-
-                                    disabled={!selectedOverlay}
-
-                                    className="me-2"
-
-                                  >
-
-                                    <FaArrowLeft />
-
-                                  </Button>
-
-                                  <Button variant="outline-secondary" onClick={handleResetPosition} disabled={!selectedOverlay}>
-
-                                    <FaUndo />
-
-                                  </Button>
-
-                                  <Button 
-
-                                    variant="outline-secondary" 
-
-                                    onClick={() => handleMoveOverlayX('right')} 
-
-                                    disabled={!selectedOverlay}
-
-                                    className="ms-2"
-
-                                  >
-
-                                    <FaArrowRight />
-
-                                  </Button>
-
-                                </div>
-
-                
-
-                                {/* Vertical Movement Controls (Bottom) */}
-
-                                <Button 
-
-                                  variant="outline-secondary" 
-
-                                  onClick={() => handleMoveOverlayY('down')} 
-
-                                  disabled={!selectedOverlay}
-
-                                  className="mt-2"
-
-                                >
-
-                                  <FaArrowDown />
-
-                                </Button>
-
-                                {/* Master Reset Button */}
-                                <Button 
-                                  variant="outline-danger" 
-                                  size="sm"
-                                  onClick={handleResetAll}
-                                  disabled={!selectedOverlay}
-                                  className="mt-3"
-                                >
-                                  {t('meme_generator.reset_all')}
-                                </Button>
-
-                              </div>
-
-                
-
-                              <div className="vr mx-3"></div> {/* Separator between movement and scale/rotation */}
-
-                
-
-                              <div className="d-flex flex-column align-items-center ms-3"> {/* Group for scale and rotation controls */}
-
-                
-
-                                <div className="d-flex flex-column align-items-center">
-
-                                {/* Scale Control */}
-
-                                <div className="d-flex align-items-center mb-3" style={{ width: '200px' }}>
-
-                                  <span className="me-2" style={{color: 'yellow'}}>{t('meme_generator.scale')}</span>
-
-                                  <Form.Range
-
-                                    min={selectedOverlayProps ? selectedOverlayProps.minScale : 0.01}
-
-                                    max={selectedOverlayProps ? selectedOverlayProps.maxScale : 2.0}
-
-                                    step="0.001"
-
-                                    value={selectedOverlayProps ? selectedOverlayProps.scale : 1}
-
-                                    onChange={handleScaleOverlay}
-
-                                    onMouseDown={() => setIsInteracting(true)}
-
-                                    onMouseUp={() => setIsInteracting(false)}
-
-                                    disabled={!selectedOverlay}
-
-                                  />
-
-                                  <Button variant="link" size="sm" onClick={() => handleResetProperty('scale')} disabled={!selectedOverlay} className="p-0 ms-2">
-
-                                    <FaUndo />
-
-                                  </Button>
-
-                                </div>
-
-                
-
-                                {/* Rotation Control */}
-
-                                <div className="d-flex align-items-center" style={{ width: '200px' }}>
-
-                                  <span className="me-2" style={{color: 'orange'}}>{t('meme_generator.rotate')}</span>
-
-                                  <Form.Range
-
-                                    min="-180" 
-
-                                    max="180" 
-
-                                    step="0.001" 
-
-                                    value={selectedOverlayProps ? selectedOverlayProps.rotation : 0}
-
-                                    onChange={(e) => handleRotateOverlay(parseFloat(e.target.value))}
-
-                                    onMouseDown={() => setIsInteracting(true)}
-
-                                    onMouseUp={() => setIsInteracting(false)}
-
-                                    disabled={!selectedOverlay}
-
-                                  />
-
-                                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotation')} disabled={!selectedOverlay} className="p-0 ms-2">
-
-                                    <FaUndo />
-
-                                  </Button>
-
-                                </div>
-
-                
-
-                                {/* RotateX Control */}
-
-                                <div className="d-flex align-items-center mt-3" style={{ width: '200px' }}>
-
-                                  <span className="me-2" style={{ whiteSpace: 'nowrap', color: 'red' }}>{t('meme_generator.rotate_x')}</span>
-
-                                  <Form.Range
-
-                                    min="-90"
-
-                                    max="90"
-
-                                    step="1"
-
-                                    value={selectedOverlayProps ? selectedOverlayProps.rotateX : 0}
-
-                                    onChange={(e) => handleRotateXChange(parseFloat(e.target.value))}
-
-                                    onMouseDown={() => setIsInteracting(true)}
-
-                                    onMouseUp={() => setIsInteracting(false)}
-
-                                    disabled={!selectedOverlay}
-
-                                  />
-
-                                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotateX')} disabled={!selectedOverlay} className="p-0 ms-2">
-
-                                    <FaUndo />
-
-                                  </Button>
-
-                                </div>
-
-                
-
-                                {/* RotateY Control */}
-
-                                <div className="d-flex align-items-center mt-3" style={{ width: '200px' }}>
-
-                                  <span className="me-2" style={{ whiteSpace: 'nowrap', color: 'red' }}>{t('meme_generator.rotate_y')}</span>
-
-                                  <Form.Range
-
-                                    min="-90"
-
-                                    max="90"
-
-                                    step="1"
-
-                                    value={selectedOverlayProps ? selectedOverlayProps.rotateY : 0}
-
-                                    onChange={(e) => handleRotateYChange(parseFloat(e.target.value))}
-
-                                    onMouseDown={() => setIsInteracting(true)}
-
-                                    onMouseUp={() => setIsInteracting(false)}
-
-                                    disabled={!selectedOverlay}
-
-                                  />
-
-                                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotateY')} disabled={!selectedOverlay} className="p-0 ms-2">
-
-                                    <FaUndo />
-
-                                  </Button>
-
-                                </div>
+                <div className="d-flex justify-content-center align-items-center">
+                  <Button 
+                    variant="outline-secondary" 
+                    onClick={() => handleMoveOverlayX('left')} 
+                    disabled={!selectedOverlay}
+                    className="me-2"
+                  >
+                    <FaArrowLeft />
+                  </Button>
+                  <Button variant="outline-secondary" onClick={handleResetPosition} disabled={!selectedOverlay}>
+                    <FaUndo />
+                  </Button>
+                  <Button 
+                    variant="outline-secondary" 
+                    onClick={() => handleMoveOverlayX('right')} 
+                    disabled={!selectedOverlay}
+                    className="ms-2"
+                  >
+                    <FaArrowRight />
+                  </Button>
+                </div>
+                <Button 
+                  variant="outline-secondary" 
+                  onClick={() => handleMoveOverlayY('down')} 
+                  disabled={!selectedOverlay}
+                  className="mt-2"
+                >
+                  <FaArrowDown />
+                </Button>
+                <Button 
+                  variant="outline-danger" 
+                  size="sm"
+                  onClick={handleResetAll}
+                  disabled={!selectedOverlay}
+                  className="mt-3"
+                >
+                  {t('meme_generator.reset_all')}
+                </Button>
+              </div>
+              <div className="vr mx-3"></div>
+              <div className="d-flex flex-column align-items-center ms-3">
+                <div className="d-flex flex-column align-items-center">
+                <div className="d-flex align-items-center mb-3" style={{ width: '200px' }}>
+                  <span className="me-2" style={{color: 'yellow'}}>{t('meme_generator.scale')}</span>
+                  <Form.Range
+                    min={selectedOverlayProps ? selectedOverlayProps.minScale : 0.01}
+                    max={selectedOverlayProps ? selectedOverlayProps.maxScale : 2.0}
+                    step="0.001"
+                    value={selectedOverlayProps ? selectedOverlayProps.scale : 1}
+                    onChange={handleScaleOverlay}
+                    onMouseDown={() => setIsInteracting(true)}
+                    onMouseUp={() => setIsInteracting(false)}
+                    disabled={!selectedOverlay}
+                  />
+                  <Button variant="link" size="sm" onClick={() => handleResetProperty('scale')} disabled={!selectedOverlay} className="p-0 ms-2">
+                    <FaUndo />
+                  </Button>
+                </div>
+                <div className="d-flex align-items-center" style={{ width: '200px' }}>
+                  <span className="me-2" style={{color: 'orange'}}>{t('meme_generator.rotate')}</span>
+                  <Form.Range
+                    min="-180" 
+                    max="180" 
+                    step="0.001" 
+                    value={selectedOverlayProps ? selectedOverlayProps.rotation : 0}
+                    onChange={(e) => handleRotateOverlay(parseFloat(e.target.value))}
+                    onMouseDown={() => setIsInteracting(true)}
+                    onMouseUp={() => setIsInteracting(false)}
+                    disabled={!selectedOverlay}
+                  />
+                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotation')} disabled={!selectedOverlay} className="p-0 ms-2">
+                    <FaUndo />
+                  </Button>
+                </div>
+                <div className="d-flex align-items-center mt-3" style={{ width: '200px' }}>
+                  <span className="me-2" style={{ whiteSpace: 'nowrap', color: 'red' }}>{t('meme_generator.rotate_x')}</span>
+                  <Form.Range
+                    min="-180"
+                    max="180"
+                    step="1"
+                    value={selectedOverlayProps ? selectedOverlayProps.rotateX : 0}
+                    onChange={(e) => handleRotateXChange(parseFloat(e.target.value))}
+                    onMouseDown={() => setIsInteracting(true)}
+                    onMouseUp={() => setIsInteracting(false)}
+                    disabled={!selectedOverlay}
+                  />
+                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotateX')} disabled={!selectedOverlay} className="p-0 ms-2">
+                    <FaUndo />
+                  </Button>
+                </div>
+                <div className="d-flex align-items-center mt-3" style={{ width: '200px' }}>
+                  <span className="me-2" style={{ whiteSpace: 'nowrap', color: 'red' }}>{t('meme_generator.rotate_y')}</span>
+                  <Form.Range
+                    min="-180"
+                    max="180"
+                    step="1"
+                    value={selectedOverlayProps ? selectedOverlayProps.rotateY : 0}
+                    onChange={(e) => handleRotateYChange(parseFloat(e.target.value))}
+                    onMouseDown={() => setIsInteracting(true)}
+                    onMouseUp={() => setIsInteracting(false)}
+                    disabled={!selectedOverlay}
+                  />
+                  <Button variant="link" size="sm" onClick={() => handleResetProperty('rotateY')} disabled={!selectedOverlay} className="p-0 ms-2">
+                    <FaUndo />
+                  </Button>
+                </div>
               </div>
               </div>
             </div>
@@ -1349,9 +1279,6 @@ const MemeGeneratorModal = ({ show, onHide, theme }) => {
                 onChange={handleImageUpload} 
                 style={{ display: 'none' }}
               />
-
-              {/* Removed Auto-Position and Show-Landmarks buttons */}
-
             </Form>
             <div className="d-flex justify-content-center mt-3">
               <Button variant="primary" onClick={handleDownload} disabled={!userImage || isRecording}>{t('meme_generator.download_button')}</Button>

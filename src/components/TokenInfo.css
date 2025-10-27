@@ -1,13 +1,20 @@
 
 .token-info-card {
-  background: rgba(22, 22, 22, 0.7); /* Dark, semi-transparent background */
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  color: #fff;
+}
+
+.light-theme .token-info-card {
+  background-color: var(--light-card-bg);
+  border: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+.dark-theme .token-info-card {
+  background-color: var(--dark-card-bg);
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text);
 }
 
 .token-info-grid {
@@ -17,26 +24,46 @@
 }
 
 .token-info-item {
-  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
   border-radius: 15px;
   transition: background 0.3s ease, transform 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
 }
 
-.token-info-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+.light-theme .token-info-item {
+  background-color: var(--light-bg);
+  border: 1px solid var(--light-border);
+}
+
+.light-theme .token-info-item:hover {
+  background-color: #f0e9d9; /* Slightly darker light-bg for hover */
+  transform: translateY(-5px);
+}
+
+.dark-theme .token-info-item {
+  background-color: #1a1a1a;
+  border: 1px solid var(--dark-border);
+}
+
+.dark-theme .token-info-item:hover {
+  background-color: #2a2a2a;
   transform: translateY(-5px);
 }
 
 .token-info-label {
   display: block;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.light-theme .token-info-label {
+  color: var(--light-text);
+}
+
+.dark-theme .token-info-label {
+  color: var(--dark-text);
 }
 
 .token-info-value {

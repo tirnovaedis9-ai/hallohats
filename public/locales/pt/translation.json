@@ -12,15 +12,15 @@
     "buy_button": "Comprar agora"
   },
   "about": {
-    "title": "Isto é CoinMarketCapped",
-    "text": "Não somos apenas mais uma moeda; somos um movimento. Nascido na blockchain Solana de alta velocidade e baixo custo, o CMC é um tributo ao poder da comunidade e à linguagem universal do humor. Nossa missão é criar um ecossistema descentralizado onde cada membro tenha voz e participação em nosso sucesso coletivo. Estamos aproveitando o poder dos memes não apenas para rir, mas para construir uma comunidade resiliente e vibrante pronta para o crescimento a longo prazo."
+    "title": "Isto é hallohats",
+    "text": "Não somos apenas mais uma moeda; somos um movimento. Nascido na blockchain Solana de alta velocidade e baixo custo, o HOT é um tributo ao poder da comunidade e à linguagem universal do humor. Nossa missão é criar um ecossistema descentralizado onde cada membro tenha voz e participação em nosso sucesso coletivo. Estamos aproveitando o poder dos memes não apenas para rir, mas para construir uma comunidade resiliente e vibrante pronta para o crescimento a longo prazo."
   },
   "features": {
     "title": "Princípios Fundamentais",
     "feature1_title": "Governança da Comunidade",
-    "feature1_text": "O CMC é de propriedade de sua comunidade. As decisões-chave e os desenvolvimentos futuros são guiados pelo consenso da comunidade.",
+    "feature1_text": "O hallohats é de propriedade de sua comunidade. As decisões-chave e os desenvolvimentos futuros são guiados pelo consenso da comunidade.",
     "feature2_title": "Lançamento Transparente",
-    "feature2_text": "O CMC foi lançado com a transparência em seu cerne. A maioria do suprimento é dedicada à comunidade.",
+    "feature2_text": "O hallohats foi lançado com a transparência em seu cerne. A maioria do suprimento é dedicada à comunidade.",
     "feature3_title": "Construído em Solana",
     "feature3_text": "Aproveitando a rede ultrarrápida da Solana para transações quase instantâneas e taxas incrivelmente baixas."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "Informações do Token",
     "name": "Nome",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "Símbolo",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "Fornecimento total",
     "supply_value": "1.000.000.000",
     "contract": "Endereço do contrato"
@@ -50,41 +50,19 @@
     "title": "Você é a Rede"
   },
   "footer": {
-    "text": "CoinMarketCapped. Para a comunidade, pela comunidade."
+    "text": "hallohats. Para a comunidade, pela comunidade."
   },
   "meme_generator": {
-    "title": "Gerador de Memes CMC",
+    "title": "Gerador de Memes hallohats",
     "upload_placeholder": "Clique para carregar a foto",
     "detecting_face": "Detectando rosto...",
     "close_button": "Fechar",
     "download_button": "Baixar Meme",
     "scale": "Escala:",
     "rotate": "Girar:",
-    "rotate_x": "Girar X:",
-    "rotate_y": "Girar Y:",
+    "rotate_x": "Arfagem:",
+    "rotate_y": "Guinada:",
     "reset_all": "Redefinir tudo"
-  },
-  "shop": {
-    "title": "Loja de Merchandising CMC",
-    "product_name": "Boné CMC \"Faça a Meme Coin Divertida Novamente\"",
-    "product_description": "O boné oficial da comunidade CoinMarketCapped. Bordado de alta qualidade, tamanho único. Mostre seu apoio!",
-    "shipping_unavailable": "O envio para o seu país está atualmente indisponível.",
-    "add_to_cart": "Adicionar ao carrinho",
-    "reviews_title": "O que as pessoas estão dizendo",
-    "review1_text": "Este chapéu é lendário! A qualidade é incrível e recebo elogios por onde quer que eu vá. Um item obrigatório para qualquer verdadeiro detentor de CMC.",
-    "review2_text": "WAGMI! Finalmente, alguns produtos que entendem. Comprei um para mim e meu irmão. Para a lua!",
-    "review3_text": "Eu uso este boné em todos os encontros de criptomoedas. É um ótimo quebra-gelo. #CMC",
-    "review4_text": "Qualidade sólida, parece durável. Parece exatamente como na foto.",
-    "review5_text": "Este é o uniforme do exército CMC. Feliz por fazer parte desta comunidade.",
-    "review6_text": "Recebi meu boné na semana passada e ainda não o tirei. Super confortável.",
-    "review7_text": "A costura é de primeira. Dá para ver que não foi feito de forma barata.",
-    "review8_text": "Vamos lá! Melhor meme coin, melhor comunidade, melhor boné.",
-    "review9_text": "Se você está pensando em comprar um, apenas compre. Você não vai se arrepender.",
-    "review10_text": "Orgulhoso de representar a CMC com este equipamento incrível.",
-    "review11_text": "A caixa de envio chegou aberta, mas a qualidade do produto é muito boa.",
-    "close_button": "Fechar",
-    "quantity": "Quantidade",
-    "buy_now": "Comprar agora"
   },
   "orientation": {
     "rotate_device": "Por favor, gire seu dispositivo para a melhor experiência"

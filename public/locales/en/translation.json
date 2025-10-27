@@ -12,15 +12,15 @@
     "buy_button": "Buy Now"
   },
   "about": {
-    "title": "This is CoinMarketCapped",
-    "text": "We're not just another coin; we are a movement. Born on the high-speed, low-cost Solana blockchain, CMC is a tribute to the power of community and the universal language of humor. Our mission is to create a decentralized ecosystem where every member has a voice and a stake in our collective success. We're leveraging the power of memes not just for laughs, but to build a resilient and vibrant community poised for long-term growth."
+    "title": "This is hallohats",
+    "text": "We're not just another coin; we are a movement. Born on the high-speed, low-cost Solana blockchain, HOT is a tribute to the power of community and the universal language of humor. Our mission is to create a decentralized ecosystem where every member has a voice and a stake in our collective success. We're leveraging the power of memes not just for laughs, but to build a resilient and vibrant community poised for long-term growth."
   },
   "features": {
     "title": "Core Principles",
     "feature1_title": "Community Governed",
-    "feature1_text": "CMC is owned by its community. Key decisions and future developments are guided by community consensus.",
+    "feature1_text": "hallohats is owned by its community. Key decisions and future developments are guided by community consensus.",
     "feature2_title": "Transparent Launch",
-    "feature2_text": "CMC was launched with transparency at its core. The majority of the supply is dedicated to the community.",
+    "feature2_text": "hallohats was launched with transparency at its core. The majority of the supply is dedicated to the community.",
     "feature3_title": "Built on Solana",
     "feature3_text": "Leveraging Solana's lightning-fast network for near-instant transactions and incredibly low fees."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "Token Information",
     "name": "Name",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "Symbol",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "Total Supply",
     "supply_value": "1,000,000,000",
     "contract": "Contract Address"
@@ -50,18 +50,18 @@
     "title": "You Are The Network"
   },
   "footer": {
-    "text": "CoinMarketCapped. For the community, by the community."
+    "text": "hallohats. For the community, by the community."
   },
   "meme_generator": {
-    "title": "CMC Meme Generator",
+    "title": "hallohats Meme Generator",
     "upload_placeholder": "Click to Upload Photo",
     "detecting_face": "Processing image...",
     "close_button": "Close",
     "download_button": "Download Meme",
     "scale": "Scale:",
     "rotate": "Rotate:",
-    "rotate_x": "Rotate X:",
-    "rotate_y": "Rotate Y:",
+    "rotate_x": "Pitch:",
+    "rotate_y": "Yaw:",
     "reset_all": "Reset All",
     "background_color": "Background:",
     "transparent": "Transparent",
@@ -70,29 +70,9 @@
     "video_mode": "Video Mode",
     "photo_mode": "Photo Mode",
     "recording": "Creating video...",
-    "converting": "Converting..."
-  },
-  "shop": {
-    "title": "CMC Merch Shop",
-    "product_name": "CMC \"Make Meme Coin Fun Again\" Cap",
-    "product_description": "The official cap of the CoinMarketCapped community. High-quality embroidery, one size fits all. Show your support!",
-    "shipping_unavailable": "Shipping to your country is currently unavailable.",
-    "add_to_cart": "Add to Cart",
-    "reviews_title": "What People Are Saying",
-    "review1_text": "This hat is legendary! The quality is amazing and I get compliments everywhere I go. A must-have for any real CMC holder.",
-    "review2_text": "WAGMI! Finally, some merch that gets it. Bought one for myself and my brother. To the moon!",
-    "review3_text": "I wear this cap to all the crypto meetups. It's a great conversation starter. #CMC",
-    "review4_text": "Solid quality, feels durable. Looks exactly like the picture.",
-    "review5_text": "This is the uniform for the CMC army. Glad to be a part of this community.",
-    "review6_text": "Got my cap last week and I haven't taken it off. Super comfortable.",
-    "review7_text": "The stitching is top-notch. You can tell this wasn't cheaply made.",
-    "review8_text": "Let's go! Best meme coin, best community, best cap.",
-    "review9_text": "If you're thinking about getting one, just do it. You won't regret it.",
-    "review10_text": "Proud to represent CMC with this awesome gear.",
-    "review11_text": "The shipping box arrived open, but the product's quality is quite good.",
-    "close_button": "Close",
-    "quantity": "Quantity",
-    "buy_now": "Buy Now"
+    "converting": "Converting...",
+    "cooldown_active": "Cooldown active. Please wait {{time}}.",
+    "rembg_error": "Background removal service is not running. Please start the local server."
   },
   "orientation": {
     "rotate_device": "Please rotate your device for the best experience"

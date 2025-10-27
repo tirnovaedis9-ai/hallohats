@@ -12,15 +12,15 @@
     "buy_button": "Compra ora"
   },
   "about": {
-    "title": "Questo è CoinMarketCapped",
-    "text": "Non siamo solo un'altra moneta; siamo un movimento. Nato sulla blockchain Solana ad alta velocità e a basso costo, CMC è un tributo al potere della comunità e al linguaggio universale dell'umorismo. La nostra missione è creare un ecosistema decentralizzato in cui ogni membro abbia voce in capitolo e una partecipazione al nostro successo collettivo. Stiamo sfruttando il potere dei meme non solo per ridere, ma per costruire una comunità resiliente e vibrante pronta per una crescita a lungo termine."
+    "title": "Questo è hallohats",
+    "text": "Non siamo solo un'altra moneta; siamo un movimento. Nato sulla blockchain Solana ad alta velocità e a basso costo, HOT è un tributo al potere della comunità e al linguaggio universale dell'umorismo. La nostra missione è creare un ecosistema decentralizzato in cui ogni membro abbia voce in capitolo e una partecipazione al nostro successo collettivo. Stiamo sfruttando il potere dei meme non solo per ridere, ma per costruire una comunità resiliente e vibrante pronta per una crescita a lungo termine."
   },
   "features": {
     "title": "Principi fondamentali",
     "feature1_title": "Governato dalla comunità",
-    "feature1_text": "CMC è di proprietà della sua comunità. Le decisioni chiave e gli sviluppi futuri sono guidati dal consenso della comunità.",
+    "feature1_text": "hallohats è di proprietà della sua comunità. Le decisioni chiave e gli sviluppi futuri sono guidati dal consenso della comunità.",
     "feature2_title": "Lancio trasparente",
-    "feature2_text": "CMC è stato lanciato con la trasparenza al centro. La maggior parte dell'offerta è dedicata alla comunità.",
+    "feature2_text": "hallohats è stato lanciato con la trasparenza al centro. La maggior parte dell'offerta è dedicata alla comunità.",
     "feature3_title": "Costruito su Solana",
     "feature3_text": "Sfruttando la rete ultraveloce di Solana per transazioni quasi istantanee e commissioni incredibilmente basse."
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "Informazioni sul token",
     "name": "Nome",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "Simbolo",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "Offerta totale",
     "supply_value": "1.000.000.000",
     "contract": "Indirizzo del contratto"
@@ -50,41 +50,19 @@
     "title": "Tu sei la rete"
   },
   "footer": {
-    "text": "CoinMarketCapped. Per la comunità, dalla comunità."
+    "text": "hallohats. Per la comunità, dalla comunità."
   },
   "meme_generator": {
-    "title": "Generatore di meme CMC",
+    "title": "Generatore di meme hallohats",
     "upload_placeholder": "Clicca per caricare la foto",
     "detecting_face": "Rilevamento del volto...",
     "close_button": "Chiudi",
     "download_button": "Scarica meme",
     "scale": "Scala:",
     "rotate": "Ruota:",
-    "rotate_x": "Ruota X:",
-    "rotate_y": "Ruota Y:",
+    "rotate_x": "Beccheggio:",
+    "rotate_y": "Imbardata:",
     "reset_all": "Ripristina tutto"
-  },
-  "shop": {
-    "title": "Negozio di merchandising CMC",
-    "product_name": "Cappellino CMC \"Rendi di nuovo divertente la Meme Coin\"",
-    "product_description": "Il cappellino ufficiale della comunità CoinMarketCapped. Ricamo di alta qualità, taglia unica. Mostra il tuo supporto!",
-    "shipping_unavailable": "La spedizione nel tuo paese non è currently disponibile.",
-    "add_to_cart": "Aggiungi al carrello",
-    "reviews_title": "Cosa dicono le persone",
-    "review1_text": "Questo cappello è leggendario! La qualità è sorprendente e ricevo complimenti ovunque vada. Un must-have per ogni vero detentore di CMC.",
-    "review2_text": "WAGMI! Finalmente, del merchandising che capisce. Ne ho comprato uno per me e mio fratello. Verso la luna!",
-    "review3_text": "Indosso questo cappellino a tutti i meetup di criptovalute. È un ottimo spunto di conversazione. #CMC",
-    "review4_text": "Qualità solida, sembra resistente. Sembra esattamente come nella foto.",
-    "review5_text": "Questa è l'uniforme per l'esercito CMC. Felice di far parte di questa comunità.",
-    "review6_text": "Ho ricevuto il mio cappellino la settimana scorsa e non l'ho più tolto. Super comodo.",
-    "review7_text": "Le cuciture sono di prim'ordine. Si capisce che non è stato fatto a buon mercato.",
-    "review8_text": "Andiamo! La migliore meme coin, la migliore comunità, il miglior cappellino.",
-    "review9_text": "Se stai pensando di prenderne uno, fallo e basta. Non te ne pentirai.",
-    "review10_text": "Orgoglioso di rappresentare CMC con questa fantastica attrezzatura.",
-    "review11_text": "La scatola di spedizione è arrivata aperta, ma la qualità del prodotto è abbastanza buona.",
-    "close_button": "Chiudi",
-    "quantity": "Quantità",
-    "buy_now": "Compra ora"
   },
   "orientation": {
     "rotate_device": "Si prega di ruotare il dispositivo per la migliore esperienza"

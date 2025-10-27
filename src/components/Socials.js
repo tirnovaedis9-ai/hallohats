@@ -12,7 +12,7 @@ const Socials = () => {
       <Container className="text-center">
         <h2 className="mb-4">{t('socials.title')}</h2>
         <div className="social-icons">
-          <a href="https://x.com/CMC_meme" target="_blank" rel="noopener noreferrer" className="social-icon twitter">
+          <a href="https://x.com/hotmemecoin" target="_blank" rel="noopener noreferrer" className="social-icon twitter">
             <FaXTwitter />
           </a>
         </div>

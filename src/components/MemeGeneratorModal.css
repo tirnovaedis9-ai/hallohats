@@ -136,8 +136,8 @@
 .meme-generator-modal .vr {
   background-color: var(--bs-secondary); /* Use Bootstrap's secondary color for consistency */
   opacity: 0.5;
-  width: 1px;
-  height: 24px; /* Adjust height as needed */
+  width: 2px; /* Make it slightly thicker */
+  height: 150px; /* Make it taller */
 }
 
 .dark-theme .meme-generator-modal .vr {

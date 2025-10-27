@@ -12,15 +12,15 @@
     "buy_button": "立即购买"
   },
   "about": {
-    "title": "这就是CoinMarketCapped",
-    "text": "我们不仅仅是另一种代币；我们是一场运动。CMC诞生于高速、低成本的Solana区块链，是对社区力量和幽默通用语言的致敬。我们的使命是创建一个去中心化的生态系统，让每个成员都有发言权，并在我们共同的成功中拥有股份。我们利用模因的力量，不仅是为了欢笑，更是为了建立一个有韧性、充满活力的社区，为长期增长做好准备。"
+    "title": "这就是hallohats",
+    "text": "我们不仅仅是另一种代币；我们是一场运动。HOT诞生于高速、低成本的Solana区块链，是对社区力量和幽默通用语言的致敬。我们的使命是创建一个去中心化的生态系统，让每个成员都有发言权，并在我们共同的成功中拥有股份。我们利用模因的力量，不仅是为了欢笑，更是为了建立一个有韧性、充满活力的社区，为长期增长做好准备。"
   },
   "features": {
     "title": "核心原则",
     "feature1_title": "社区治理",
-    "feature1_text": "CMC由其社区拥有。关键决策和未来发展由社区共识指导。",
+    "feature1_text": "hallohats由其社区拥有。关键决策和未来发展由社区共识指导。",
     "feature2_title": "透明启动",
-    "feature2_text": "CMC以透明为核心启动。大部分供应量专用于社区。",
+    "feature2_text": "hallohats以透明为核心启动。大部分供应量专用于社区。",
     "feature3_title": "建立在Solana上",
     "feature3_text": "利用Solana闪电般的网络实现近乎即时的交易和极低的费用。"
   },
@@ -33,9 +33,9 @@
   "tokenInfo": {
     "title": "代币信息",
     "name": "名称",
-    "name_value": "CoinMarketCapped",
+    "name_value": "hallohats",
     "symbol": "符号",
-    "symbol_value": "CMC",
+    "symbol_value": "HOT",
     "supply": "总供应量",
     "supply_value": "1.000.000.000",
     "contract": "合约地址"
@@ -50,43 +50,21 @@
     "title": "你就是网络"
   },
   "footer": {
-    "text": "CoinMarketCapped。为社区，由社区。"
+    "text": "hallohats。为社区，由社区。"
   },
   "meme_generator": {
-    "title": "CMC模因生成器",
+    "title": "hallohats模因生成器",
     "upload_placeholder": "点击上传照片",
     "detecting_face": "正在检测人脸...",
     "close_button": "关闭",
     "download_button": "下载模因",
     "scale": "缩放:",
     "rotate": "旋转:",
-    "rotate_x": "X轴旋转:",
-    "rotate_y": "Y轴旋转:",
+    "rotate_x": "俯仰:",
+    "rotate_y": "偏航:",
     "reset_all": "全部重置"
   },
-  "shop": {
-    "title": "CMC商品店",
-    "product_name": "CMC \"让模因币再次有趣\" 帽子",
-    "product_description": "CoinMarketCapped社区的官方帽子。高质量刺绣，均码。展示您的支持！",
-    "shipping_unavailable": "目前无法运送到您的国家。",
-    "add_to_cart": "添加到购物车",
-    "reviews_title": "人们怎么说",
-    "review1_text": "这顶帽子太棒了！质量惊人，我走到哪里都收到赞美。任何真正的CMC持有者必备。",
-    "review2_text": "WAGMI！终于，一些懂行的商品。给我自己和我的兄弟买了一个。冲向月球！",
-    "review3_text": "我戴着这顶帽子参加所有的加密货币聚会。这是一个很好的话题开端。#CMC",
-    "review4_text": "质量很好，感觉很耐用。看起来和图片一模一样。",
-    "review5_text": "这是CMC军队的制服。很高兴能成为这个社区的一员。",
-    "review6_text": "我上周拿到了我的帽子，还没有摘下来。超级舒服。",
-    "review7_text": "缝合是一流的。你可以看出这不是廉价制造的。",
-    "review8_text": "加油！最好的模因币，最好的社区，最好的帽子。",
-    "review9_text": "如果你正在考虑买一个，就买吧。你不会后悔的。",
-    "review10_text": "很自豪能用这个很棒的装备代表CMC。",
-    "review11_text": "运送箱送达时是开着的，但产品质量很好。",
-    "close_button": "关闭",
-    "quantity": "数量",
-    "buy_now": "立即购买"
-  },
   "orientation": {
-    "rotate_device": "为获得最佳体验，请旋转您的设备"
+    "rotate_device": "Please rotate your device for the best experience"
   }
 }
